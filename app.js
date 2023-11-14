@@ -20,15 +20,45 @@ PORT        = 4200;                                 // Set a port number at the 
 */
 app.get('/', function(req, res)
     {  
-        let query1 = "SELECT * FROM bsg_people;";               // Define our query
+        // Declare Query 1
+        let query1 = "SELECT * FROM bsg_people;";
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        // Query 2 is the same in both cases
+        let query2 = "SELECT * FROM bsg_planets;";
 
-            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query                             
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
 
-app.post('/add-person-form', function(req, res){
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+            
+            return res.render('index', {data: people, planets: planets});
+        })
+    })    
+});                                                                                 
+
+app.post('/add-person-form', function(req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -47,7 +77,7 @@ app.post('/add-person-form', function(req, res){
 
     // Create the query and run it on the database
     query1 = `INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES ('${data['input-fname']}', '${data['input-lname']}', ${homeworld}, ${age})`;
-    db.pool.query(query1, function(error, rows, fields){
+    db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
         if (error) {
@@ -69,6 +99,6 @@ app.post('/add-person-form', function(req, res){
 /*
     LISTENER
 */
-app.listen(PORT, function(){            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
+app.listen(PORT, function() {            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });
