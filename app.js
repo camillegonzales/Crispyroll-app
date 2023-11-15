@@ -88,20 +88,8 @@ app.delete('/delete-studio-ajax/', function(req,res,next) {
         // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
         console.log(error);
         res.sendStatus(400);
-        }
-
-        else
-        {
-            // Run the second query
-            db.pool.query(delete_Studio, [studio_id], function(error, rows, fields) {
-
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                } else {
-                    res.sendStatus(204);
-                }
-            })
+        } else {
+            res.sendStatus(204);
         }
     })
 });
