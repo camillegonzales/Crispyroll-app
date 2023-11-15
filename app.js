@@ -58,6 +58,8 @@ app.get('/', function(req, res)
     })    
 });                                                                                 
 
+// app.js - ROUTES section
+
 app.post('/add-person-ajax', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
@@ -108,7 +110,7 @@ app.post('/add-person-ajax', function(req, res)
             })
         }
     })
-});  
+});
 
 app.delete('/delete-person-ajax/', function(req,res,next) {
     let data = req.body;
