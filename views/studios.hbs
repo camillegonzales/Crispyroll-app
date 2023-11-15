@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     {{#each data}}
-                    <tr>
+                    <tr data-value="{{this.id}}">>
                         <td>{{this.studio_id}}</td>
                         <td>{{this.studio_name}}</td>
                         <td>{{this.year_founded}}</td>
@@ -66,11 +66,13 @@
                         </option>
                         {{/each}}
                     </select>
-                    <label for="year_founded"> Year Founded </label> <input type="number" name="year_founded" id="year_founded">
-                    <div class="btn-container">
+                    <label for="input_year_founded"> Year Founded </label> <input type="number"
+                        name="input_year_founded" id="year_founded_update">
+                    {{!-- <div class="btn-container">
                         <input class="btn" type="submit" id="updateStudio" value="Save Update Studio">
                         <input class="btn" type="button" value="Cancel">
-                    </div>
+                    </div> --}}
+                    <input type="submit">
                 </fieldset>
             </form>
         </div><!-- update -->

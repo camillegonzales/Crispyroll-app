@@ -9,7 +9,7 @@ updateStudioForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputStudioName = document.getElementById("mySelect");
-    let inputYearFounded = document.getElementById("year_founded");
+    let inputYearFounded = document.getElementById("year_founded_update");
 
     // Get the values from the form fields
     let studioNameValue = inputStudioName.value;
@@ -18,7 +18,7 @@ updateStudioForm.addEventListener("submit", function (e) {
     // currently the database table for bsg_people does not allow updating values to NULL
     // so we must abort if being bassed NULL for homeworld
 
-    if (isNaN(studioNameValue)) 
+    if (isNaN(yearFoundedValue)) 
     {
         return;
     }
