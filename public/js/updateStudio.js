@@ -9,7 +9,7 @@ updateStudioForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputStudioName = document.getElementById("mySelect");
-    let inputYearFounded = document.getElementById("year_founded");
+    let inputYearFounded = document.getElementById("year_founded_update");
 
     // Get the values from the form fields
     let studioNameValue = inputStudioName.value;
