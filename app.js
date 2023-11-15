@@ -103,7 +103,6 @@ app.put('/put-studio-ajax', function(req,res,next){
     SET studio_name = '${studio_name}', year_founded = '${year_founded}'
     WHERE studio_id = '${studio_id}`;
 
-    let selectWorld = `SELECT * FROM bsg_planets WHERE id = ?`
   
           // Run the 1st query
           db.pool.query(queryUpdateWorld, [homeworld, person], function(error, rows, fields){
@@ -118,16 +117,7 @@ app.put('/put-studio-ajax', function(req,res,next){
               // table on the front-end
               else
               {
-                  // Run the second query
-                  db.pool.query(selectWorld, [homeworld], function(error, rows, fields) {
-  
-                      if (error) {
-                          console.log(error);
-                          res.sendStatus(400);
-                      } else {
-                          res.send(rows);
-                      }
-                  })
+                  res.send(rows);
               }
   })});
 
