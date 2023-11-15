@@ -1,88 +1,57 @@
-{{!-- Create a table --}}
-<table id="people-table">
+<!DOCTYPE html>
+<html lang="en">
 
-    {{!-- Header section --}}
-    <thead>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crispyroll</title>
+    <link rel="stylesheet" href="main.css">
+</head>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr data-value={{this.id}}>
-            <td>{{this.id}}</td>
-            <td>{{this.fname}}</td>
-            <td>{{this.lname}}</td>
-            <td>{{this.homeworld}}</td>
-            <td>{{this.age}}</td>
-            <td><button onclick="deletePerson({{this.id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_person.js"></script>
-
-{{!-- Form to add a record to the table  --}}
-<h2>Adding Data with AJAX</h2>
-<p>To add a new person, please enter their information below and click 'Submit'!</p>
-<form id="add-person-form-ajax">
-    <label for="input-fname">First Name: </label>
-    <input type="text" name="input-fname" id="input-fname">
-    
-    <label for="input-lname">Last Name: </label>
-    <input type="text" name="input-lname" id="input-lname">
-
-    <label for="input-homeworld">Homeworld: </label>
-    <!-- <input type="number" name="input-homeworld" id="input-homeworld"> -->
-    <select name="input-homeworld" id="input-homeworld">
-        <option value="">Select a Planet</option>
-        {{#each planets}}
-        <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-age">Age: </label>
-    <input type="number" name="input-age" id="input-age">
-
-    <input type="submit">
-</form>
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_person.js"></script>
-
-<h2>Updating A User's HomeWorld Form</h2>
-<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
-<form id="update-person-form-ajax">
-
-    <label for="input-fullname">Full name: </label>
-    <select name="input-fullname" id="mySelect">
-        <option value="test">Select a Person</option>
-        {{#each data}}
-        <option value="{{this.id}}">{{this.fname}} {{this.lname}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-homeworld">Homeworld: </label>
-    <select name="input-homeworld" id="input-homeworld-update">
-        <option>Select a Planet</option>
-        {{#each planets}}
-        <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
-    <input type="submit">
-
-</form>
-
-<script src="./js/update_person.js"></script>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">CRISPYROLL</a></div>
+            <div class="nav-links">
+                <a href="users.html">Users</a>
+                <a href="animes.html">Animes</a>
+                <a href="studios.html">Studios</a>
+                <a href="ratings.html">Ratings</a>
+                <a href="users_animes.html">Users/Animes</a>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <h1>OVERVIEW</h1>
+        <div class="home-section">
+            <p>
+                In recent years, the anime industry has exploded in popularity, with a market value of $28 billion in 2022
+                and an expected $60 billion by 2030. While originating in Japan, anime content and merchandise has spread
+                globally. In October 2020, the anime industry brought its best-selling film of all time to theaters: Demon
+                Slayer the Movie: Mugen Train, produced by Ufotable studio. Bringing in over $500 million for the industry,
+                the film paved the way for many other hits to follow.
+            </p>
+            <br>
+            <p>
+                With anime popularity on the rise, a company named Crispyroll emerged to create a space for fans to come
+                together and leave their own ratings on what they have watched. Their database driven website allows Users
+                to add Animes from different Studios to their watchlist, as well as Ratings for the Animes. The watchlist
+                will allow Users a place to keep track of the Animes they have watched, which Studios produced the Animes,
+                how many episodes the Animes have, and the option to leave Ratings on the Animes. Once Users want to leave
+                optional feedback, they are prompted to rate the show out of 5 stars and leave a comment with their
+                authentic opinion. This can also be done anonymously!
+            </p>
+            <br>
+            <p>
+                After sending out an interest survey, around 2,000 Users are excited to join the platform! There are
+                currently over 400 anime Studios and over 12,000 Animes produced, so with the expected growth, the database
+                will need to support this large amount of data. Crispyroll is excited to welcome Users who are ready to rate
+                their favorite (and least favorite) Animes!
+            </p>
+        </div>
+    </section>
+</body>
+<footer>
+    <p>&copy; 2023 Crispyroll</p>
+</footer>
+</html>

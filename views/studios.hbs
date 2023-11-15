@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crispyroll</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">CRISPYROLL</a></div>
+            <div class="nav-links">
+                <a href="users.html">Users</a>
+                <a href="animes.html">Animes</a>
+                <div class="highlight"><a href="studios.html">Studios</a></div>
+                <a href="ratings.html">Ratings</a>
+                <a href="users_animes.html">Users/Animes</a>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <h1>STUDIOS</h1>
+        <div id="browse" style="display: block">
+            <table border="1" cellpadding="5">
+                <thead>
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>{{@key}}</th>
+                        {{/each}}
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr>
+                        <td>{{this.studio_id}}</td>
+                        <td>{{this.studio_name}}</td>
+                        <td>{{this.year_founded}}</td>
+                        <td>
+                            <button onclick="deleteStudio({{this.studio_id}})">Delete</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <p>&nbsp;</p>
+        </div>
+        <!--Insert-->
+        <div id="insert" style="display: block">
+            <form id="addStudio">
+                <legend><strong>Add Studios</strong></legend>
+                <fieldset class="fields">
+                    <label> Studio Name </label> <input type="text" name="name">
+                    <label> Year Founded </label> <input type="text" name="population">
+                    <div class="btn-container">
+                        <input class="btn" type="submit" id="addStudio" value="Add a Studio">
+                        <input class="btn" type="button" value="Cancel">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <!--Update-->
+        <p>&nbsp;</p>
+        <div id="update" style="display: block">
+            <form id="updateStudio">
+                <legend><strong>Update Studio</strong></legend>
+                <fieldset class="fields">
+                    <label> Studio Name </label> <input type="text" name="studio">
+                    <label> Year Founded </label> <input type="number" name="yearFounded">
+                    <div class="btn-container">
+                        <input class="btn" type="submit" id="UpdateSaveStudio" value="Save Update Studio">
+                        <input class="btn" type="button" value="Cancel">
+                    </div>
+                </fieldset>
+            </form>
+        </div><!-- update -->
+    </section>
+    <script src="./js/addStudio"></script>
+    <script src="./js/updateStudio"></script>
+    <script src="./js/deleteStudio"></script>
+</body>
+<footer>
+    <p>&copy; 2023 Crispyroll</p>
+</footer>
+
+</html>

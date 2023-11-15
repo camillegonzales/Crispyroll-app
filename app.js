@@ -18,69 +18,36 @@ PORT        = 4200;                                 // Set a port number at the 
 /*
     ROUTES
 */
-app.get('/', function(req, res)
+app.get('/studios.html', function(req, res)
     {  
         // Declare Query 1
-        let query1 = "SELECT * FROM bsg_people;";
-
-        // Query 2 is the same in both cases
-        let query2 = "SELECT * FROM bsg_planets;";
+        let query1 = "SELECT studio_id, studio_name, year_founded FROM Studios;";
 
         // Run the 1st query
         db.pool.query(query1, function(error, rows, fields) {
-        
-            // Save the people
-            let people = rows;
-            
-            // Run the 2nd query
-            db.pool.query(query2, (error, rows, fields) => {
-                
-                // Save the planets
-                let planets = rows;
 
-                // Construct an object for reference in the table
-                // Array.map is awesome for doing something with each
-                // element of an array.
-                let planetmap = {}
-                planets.map(planet => {
-                    let id = parseInt(planet.id, 10);
-
-                    planetmap[id] = planet["name"];
-                })
-
-                // Overwrite the homeworld ID with the name of the planet in the people object
-                people = people.map(person => {
-                    return Object.assign(person, {homeworld: planetmap[person.homeworld]})
-                })
-                
-                return res.render('index', {data: people, planets: planets}
+            res.render('studios', {data:rows}
             );
         })
-    })    
-});                                                                                 
+    });                                                                               
 
 // app.js - ROUTES section
 
-app.post('/add-person-ajax', function(req, res) 
+app.post('/add-studio-ajax', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     // Capture NULL values
-    let homeworld = parseInt(data.homeworld);
-    if (isNaN(homeworld))
+    let studio_id = parseInt(data.studio_id);
+    if (isNaN(studio_id))
     {
-        homeworld = 'NULL'
-    }
-
-    let age = parseInt(data.age);
-    if (isNaN(age))
-    {
-        age = 'NULL'
+        studio_id = 'NULL'
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES ('${data.fname}', '${data.lname}', ${homeworld}, ${age})`;
+    query1 = `INSERT INTO Studios (studio_name, year_founded) 
+    VALUES ('${data.studio_name}', '${data.year_founded}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
@@ -113,15 +80,14 @@ app.post('/add-person-ajax', function(req, res)
     })
 });
 
-app.delete('/delete-person-ajax/', function(req,res,next) {
+app.delete('/delete-studio-ajax/', function(req,res,next) {
     let data = req.body;
-    let personID = parseInt(data.id);
-    let deleteBsg_Cert_People = `DELETE FROM bsg_cert_people WHERE pid = ?`;
-    let deleteBsg_People= `DELETE FROM bsg_people WHERE id = ?`;
+    let studio_id = parseInt(data.studio_id);
+    let delete_Studio = `DELETE FROM Studios WHERE studio_id = ${studio_id}`;
   
   
     // Run the 1st query
-    db.pool.query(deleteBsg_Cert_People, [personID], function(error, rows, fields) {
+    db.pool.query(delete_Studio, [studio_id], function(error, rows, fields) {
         if (error) {
 
         // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -132,7 +98,7 @@ app.delete('/delete-person-ajax/', function(req,res,next) {
         else
         {
             // Run the second query
-            db.pool.query(deleteBsg_People, [personID], function(error, rows, fields) {
+            db.pool.query(delete_Studio, [studio_id], function(error, rows, fields) {
 
                 if (error) {
                     console.log(error);
@@ -145,13 +111,15 @@ app.delete('/delete-person-ajax/', function(req,res,next) {
     })
 });
 
-app.put('/put-person-ajax', function(req,res,next){
+app.put('/put-studio-ajax', function(req,res,next){
     let data = req.body;
   
-    let homeworld = parseInt(data.homeworld);
-    let person = parseInt(data.fullname);
+    let studio_id = parseInt(data.studio_id);
   
-    let queryUpdateWorld = `UPDATE bsg_people SET homeworld = ? WHERE bsg_people.id = ?`;
+    let update_Studio = `UPDATE Studios 
+    SET studio_name = '${studio_name}', year_founded = '${year_founded}'
+    WHERE studio_id = '${studio_id}`;
+
     let selectWorld = `SELECT * FROM bsg_planets WHERE id = ?`
   
           // Run the 1st query
