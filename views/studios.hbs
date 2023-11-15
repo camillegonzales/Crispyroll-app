@@ -50,7 +50,7 @@
         </div>
         <!--Insert-->
         <div id="insert" style="display: block">
-            <form id="addStudio">
+            <form id="add-studio-form-ajax">
                 <legend><strong>Add Studios</strong></legend>
                 <fieldset class="fields">
                     <label> Studio Name </label> <input type="text" name="name">
@@ -65,10 +65,18 @@
         <!--Update-->
         <p>&nbsp;</p>
         <div id="update" style="display: block">
-            <form id="updateStudio">
+            <form id="update-studio-form-ajax">
                 <legend><strong>Update Studio</strong></legend>
                 <fieldset class="fields">
-                    <label> Studio Name </label> <input type="text" name="studio">
+                    <label for="input_studio_name"> Studio Name </label>
+                    <select name="input_studio_name" id="mySelect">
+                        <option value="test">Select a Studio</option>
+                        {{#each data}}
+                        <option value="{{this.studio_id}}">
+                            {{this.studio_name}}
+                        </option>
+                        {{/each}}
+                    </select>
                     <label> Year Founded </label> <input type="number" name="yearFounded">
                     <div class="btn-container">
                         <input class="btn" type="submit" id="UpdateSaveStudio" value="Save Update Studio">
