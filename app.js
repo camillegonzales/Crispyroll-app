@@ -105,7 +105,7 @@ app.put('/put-studio-ajax', function(req,res,next){
 
   
           // Run the 1st query
-          db.pool.query(queryUpdateWorld, [homeworld, person], function(error, rows, fields){
+          db.pool.query(update_Studio, [studio_id], function(error, rows, fields){
               if (error) {
   
               // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
