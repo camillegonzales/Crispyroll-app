@@ -98,14 +98,16 @@ app.put('/put-studio-ajax', function(req,res,next){
     let data = req.body;
   
     let studio_id = parseInt(data.studio_id);
-  
+    let studio_name = parseInt(data.studio_name);
+    let year_founded = parseInt(data.year_founded);
+
     let updateStudio = `UPDATE Studios 
     SET studio_name = '${studio_name}', year_founded = '${year_founded}'
     WHERE studio_id = '${studio_id}`;
 
   
           // Run the 1st query
-          db.pool.query(updateStudio, [studio_id], function(error, rows, fields){
+          db.pool.query(updateStudio, [studio_name, year_founded, studio_id], function(error, rows, fields){
               if (error) {
   
               // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
