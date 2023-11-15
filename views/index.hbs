@@ -12,6 +12,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
@@ -20,16 +21,18 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.id}}>
             <td>{{this.id}}</td>
             <td>{{this.fname}}</td>
             <td>{{this.lname}}</td>
             <td>{{this.homeworld}}</td>
             <td>{{this.age}}</td>
+            <td><button onclick="deletePerson({{this.id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_person.js"></script>
 
 {{!-- Form to add a record to the table  --}}
 <h2>Adding Data with AJAX</h2>
