@@ -27,7 +27,7 @@ function deleteStudio(studio_id) {
 
 function deleteRow(studio_id){
 
-    let table = document.getElementById("people-table");
+    let table = document.getElementById("studios-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
