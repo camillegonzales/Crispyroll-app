@@ -54,7 +54,7 @@ updateStudioForm.addEventListener("submit", function (e) {
 })
 
 
-function updateRow(data, personID){
+function updateRow(data, studio_id){
     let parsedData = JSON.parse(data);
     
     let table = document.getElementById("studios-table");
@@ -76,7 +76,7 @@ function updateRow(data, personID){
     }
 }
 
-addRowToTable = (data) => {
+/* addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("studios-table");
@@ -121,4 +121,4 @@ addRowToTable = (data) => {
     option.value = newRow.studio_id;
     selectMenu.add(option);
     // End of new step 8 code.
-}
+} */
