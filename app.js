@@ -70,7 +70,7 @@ app.post('/add-studio-form', function(req, res)
         // presents it on the screen
         else
         {
-            res.redirect('/');
+            res.send(rows);
         }
     })
 })
