@@ -41,7 +41,7 @@ app.get('/studios.html', function(req, res)
 
 // app.js - ROUTES section
 
-app.post('/add-studio-ajax', function(req, res) 
+app.post('/add-studio-form', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -65,28 +65,15 @@ app.post('/add-studio-ajax', function(req, res)
             console.log(error)
             res.sendStatus(400);
         }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
         else
         {
-            // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM bsg_people;`;
-            db.pool.query(query2, function(error, rows, fields) {
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
+            res.redirect('/');
         }
     })
-});
+})
 
 app.delete('/delete-studio-ajax/', function(req,res,next) {
     let data = req.body;
