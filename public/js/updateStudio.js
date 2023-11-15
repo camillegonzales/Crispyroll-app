@@ -76,7 +76,7 @@ function updateRow(data, studio_id){
     }
 }
 
-/* addRowToTable = (data) => {
+addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("studios-table");
@@ -93,13 +93,19 @@ function updateRow(data, studio_id){
     let studioIDCell = document.createElement("TD");
     let studioNameCell = document.createElement("TD");
     let yearFoundedCell = document.createElement("TD");
+
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    studioIDCell.innerText = newRow.id;
-    studioNameCell.innerText = newRow.fname;
-    yearFoundedCell.innerText = newRow.lname;
-    deleteCell.innerText = newRow.homeworld;
+    studioIDCell.innerText = newRow.studio_id;
+    studioNameCell.innerText = newRow.studio_name;
+    yearFoundedCell.innerText = newRow.year_founded;
+
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deleteStudio(newRow.studio_id);
+    };
 
     // Add the cells to the row 
     row.appendChild(studioIDCell);
@@ -121,4 +127,4 @@ function updateRow(data, studio_id){
     option.value = newRow.studio_id;
     selectMenu.add(option);
     // End of new step 8 code.
-} */
+} 
