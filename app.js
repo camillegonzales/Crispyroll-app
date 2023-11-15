@@ -75,7 +75,7 @@ app.post('/add-studio-form', function(req, res)
     })
 })
 
-app.delete('/delete-studio-ajax/', function(req,res,next) {
+app.delete('/delete-studio-ajax', function(req,res,next) {
     let data = req.body;
     let studio_id = parseInt(data.studio_id);
     let delete_Studio = `DELETE FROM Studios WHERE studio_id = ${studio_id}`;

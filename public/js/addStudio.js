@@ -70,10 +70,15 @@ addRowToTable = (data) => {
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    studioIDCell.innerText = newRow.id;
-    studioNameCell.innerText = newRow.fname;
-    yearFoundedCell.innerText = newRow.lname;
-    deleteCell.innerText = newRow.homeworld;
+    studioIDCell.innerText = newRow.studio_id;
+    studioNameCell.innerText = newRow.studio_name;
+    yearFoundedCell.innerText = newRow.year_founded;
+
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function() {
+        deleteStudio(newRow.studio_id);
+    };
 
     // Add the cells to the row 
     row.appendChild(studioIDCell);
