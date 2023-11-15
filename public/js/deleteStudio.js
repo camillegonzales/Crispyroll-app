@@ -2,7 +2,7 @@
 function deleteStudio(studio_id) {
     // Put our data we want to send in a javascript object
     let data = {
-        id: studio_id
+      studio_id: studio_id
     };
     
     // Setup our AJAX request
