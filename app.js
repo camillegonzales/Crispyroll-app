@@ -94,7 +94,7 @@ app.delete('/delete-studio-ajax/', function(req,res,next) {
     })
 });
 
-app.put('/put-studio-ajax', function(req,res,next){
+app.put('/put-studio-form', function(req,res,next){
     let data = req.body;
   
     let studio_id = parseInt(data.studio_id);
