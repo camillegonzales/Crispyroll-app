@@ -22,6 +22,10 @@ app.get("/", function(req, res){
     return res.render('index')
   });
 
+  app.get("/index.html", function(req, res){
+    return res.render('index')
+  });
+
 app.get('/studios.html', function(req, res)
     {  
         // Declare Query 1
