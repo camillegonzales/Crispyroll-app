@@ -39,13 +39,12 @@
                         <td>{{this.studio_id}}</td>
                         <td>{{this.studio_name}}</td>
                         <td>{{this.year_founded}}</td>
-                        <td>
-                            <button onclick="deleteStudio({{this.studio_id}})">Delete</button>
-                        </td>
+                        <td><button onclick="deleteStudio({{this.studio_id}})">Delete</button></td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
+            <script src="./js/delete_studio.js"></script>
             <p>&nbsp;</p>
         </div>
         <!--Insert-->
