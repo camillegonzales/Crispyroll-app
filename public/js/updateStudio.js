@@ -41,6 +41,7 @@ updateStudioForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             updateRow(xhttp.response, studioNameValue);
+            addRowToTable(xhttp.response);
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -76,7 +77,7 @@ function updateRow(data, studio_id){
     }
 }
 
-/* addRowToTable = (data) => {
+addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("studios-table");
@@ -127,4 +128,4 @@ function updateRow(data, studio_id){
     option.value = newRow.studio_id;
     selectMenu.add(option);
     // End of new step 8 code.
-} */
+}
