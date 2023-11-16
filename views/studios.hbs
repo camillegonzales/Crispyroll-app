@@ -40,11 +40,11 @@
         </div>
         <!--Insert-->
         <div id="insert" style="display: block">
-            <form id="add-studio-form" method="POST" action="/add-studio-form">
+            <form id="add-studio-form-ajax">
                 <legend><strong>Add Studios</strong></legend>
                 <fieldset class="fields">
-                    <label> Studio Name </label> <input type="text" name="studio_name">
-                    <label> Year Founded </label> <input type="text" name="year_founded">
+                    <label> Studio Name </label> <input type="text" name="input-studio-name" id="input-studio-name">
+                    <label> Year Founded </label> <input type="number" name="input-year-founded" id="input-year-founded">
                     <div class="btn-container">
                         <input class="btn" type="submit" id="addStudio" value="Add a Studio">
                         <input class="btn" type="button" value="Cancel">
