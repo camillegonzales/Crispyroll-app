@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crispyroll</title>
-    <link rel="stylesheet" href="main.css">
-</head>
-
 <body>
     <header>
         <nav>
@@ -21,99 +11,95 @@
             </div>
         </nav>
     </header>
+
     <section>
     <h1>ANIMES</h1>
-    <div id="browse" style="display: block">
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Studio</th>
-                <th>Number of Episodes</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Hunter x Hunter</td>
-                <td>NipponTV</td>
-                <td>148</td>
-                <td>
-                    <button onclick="deleteAnime(1)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Attack on Titan</td>
-                <td>MAPPA</td>
-                <td>88</td>
-                <td>
-                    <button onclick="deleteAnime(2)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Terror in Resonance</td>
-                <td>MAPPA</td>
-                <td>11</td>
-                <td>
-                    <button onclick="deleteAnime(3)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Jujutsu Kaisen</td>
-                <td>MAPPA</td>
-                <td>24</td>
-                <td>
-                    <button onclick="deleteAnime(4)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>The Promised Neverland</td>
-                <td>CloverWorks</td>
-                <td>12</td>
-                <td>
-                    <button onclick="deleteAnime(5)">Delete</button>
-                </td>
-            </tr>
-        </table>
-        <p>&nbsp;</p>
-    </div>
+
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Studio</th>
+            <th>Number of Episodes</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Hunter x Hunter</td>
+            <td>NipponTV</td>
+            <td>148</td>
+            <td>
+                <button onclick="deleteAnime(1)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Attack on Titan</td>
+            <td>MAPPA</td>
+            <td>88</td>
+            <td>
+                <button onclick="deleteAnime(2)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Terror in Resonance</td>
+            <td>MAPPA</td>
+            <td>11</td>
+            <td>
+                <button onclick="deleteAnime(3)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Jujutsu Kaisen</td>
+            <td>MAPPA</td>
+            <td>24</td>
+            <td>
+                <button onclick="deleteAnime(4)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>The Promised Neverland</td>
+            <td>CloverWorks</td>
+            <td>12</td>
+            <td>
+                <button onclick="deleteAnime(5)">Delete</button>
+            </td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+
+
     <!--Insert-->
-    <div id="insert" style="display: block">
-        <form id="addAnime">
-            <legend><strong>Add Animes</strong></legend>
-            <fieldset class="fields">
-                <label> Title </label> <input type="text" name="title">
-                <label> Studio </label> <input type="text" name="studio">
-                <label> Number of Episodes </label> <input type="number" name="episodes">
-                <div class="btn-container">
-                    <input class="btn" type="submit" id="AddAnime" value="Add an Anime">
-                    <input class="btn" type="button" value="Cancel">
-                </div>
-            </fieldset>
-        </form>
-    </div>
+    <form id="addAnime">
+        <legend><strong>Add Animes</strong></legend>
+        <fieldset class="fields">
+            <label> Title </label> <input type="text" name="title">
+            <label> Studio </label> <input type="text" name="studio">
+            <label> Number of Episodes </label> <input type="number" name="episodes">
+            <div class="btn-container">
+                <input class="btn" type="submit" id="AddAnime" value="Add an Anime">
+                <input class="btn" type="button" value="Cancel">
+            </div>
+        </fieldset>
+    </form>
+
     <!--Update-->
     <p>&nbsp;</p>
-    <div id="update" style="display: block">
-        <form id="updateAnime">
-            <legend><strong>Update Anime</strong></legend>
-            <fieldset class="fields">
-                <label> Title </label> <input type="text" name="title">
-                <label> Studio </label> <input type="text" name="studio">
-                <label> Number of Episodes </label> <input type="number" name="episodes">
-                <div class="btn-container">
-                    <input class="btn" type="submit" id="UpdateSaveAnime" value="Save Update Anime">
-                    <input class="btn" type="button" value="Cancel">
-                </div>
-            </fieldset>
-        </form>
-    </div><!-- update -->
+    <form id="updateAnime">
+        <legend><strong>Update Anime</strong></legend>
+        <fieldset class="fields">
+            <label> Title </label> <input type="text" name="title">
+            <label> Studio </label> <input type="text" name="studio">
+            <label> Number of Episodes </label> <input type="number" name="episodes">
+            <div class="btn-container">
+                <input class="btn" type="submit" id="UpdateSaveAnime" value="Save Update Anime">
+                <input class="btn" type="button" value="Cancel">
+            </div>
+        </fieldset>
+    </form>
     </section>
 </body>
-<footer>
-    <p>&copy; 2023 Crispyroll</p>
-</footer>
-</html>

@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crispyroll</title>
-    <link rel="stylesheet" href="main.css">
-</head>
-
 <body>
     <header>
         <nav>
@@ -21,147 +11,141 @@
             </div>
         </nav>
     </header>
+
     <section>
         <h1>RATINGS</h1>
-        <div id="browse" style="display: block">
-            <table border="1" cellpadding="5">
-                <tr>
 
-                    <th>ID</th>
-                    <th>User</th>
-                    <th>Anime</th>
-                    <th>Rating</th>
-                    <th>Review</th>
-                    <th>Delete</th>
-                </tr>
-                <tr>
-                    <td>1</td>
+        <table border="1" cellpadding="5">
+            <tr>
 
-                    <td>NULL</td>
-                    <td>Hunter x Hunter</td>
-                    <td>5</td>
-                    <td>My favorite anime of all time!!</td>
-                    <td>
-                        <button onclick="deleteRating(1)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
+                <th>ID</th>
+                <th>User</th>
+                <th>Anime</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>1</td>
 
-                    <td>Honestliz</td>
-                    <td>Jujutsu Kaisen</td>
-                    <td>5</td>
-                    <td>One of the best animes out there, the plot is so
-                        thought out and the characters are all brilliantly
-                        written</td>
-                    <td>
-                        <button onclick="deleteRating(2)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Honestliz</td>
-                    <td>Terror in Resonance</td>
-                    <td>5</td>
-                    <td>Really sad but very well written and unique
-                    </td>
-                    <td>
-                        <button onclick="deleteRating(3)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Serexolik</td>
-                    <td>The Promised Neverland</td>
-                    <td>3</td>
-                    <td>Season 1 was amazing, but season 2 was really bad
-                    </td>
-                    <td>
-                        <button onclick="deleteRating(4)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>PeppermintP</td>
-                    <td>Hunter x Hunter</td>
-                    <td>5</td>
-                    <td>Such an original anime and I love the main
-                        characters
-                    </td>
-                    <td>
-                        <button onclick="deleteRating(5)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>wstr000</td>
-                    <td>Attack on Titan</td>
-                    <td>4</td>
-                    <td>The later seasons confuse me, but still one of my
-                        faves
-                    </td>
-                    <td>
-                        <button onclick="deleteRating(6)">Delete</button>
-                    </td>
-                </tr>
-            </table>
-            <p>&nbsp;</p>
-        </div>
+                <td>NULL</td>
+                <td>Hunter x Hunter</td>
+                <td>5</td>
+                <td>My favorite anime of all time!!</td>
+                <td>
+                    <button onclick="deleteRating(1)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+
+                <td>Honestliz</td>
+                <td>Jujutsu Kaisen</td>
+                <td>5</td>
+                <td>One of the best animes out there, the plot is so
+                    thought out and the characters are all brilliantly
+                    written</td>
+                <td>
+                    <button onclick="deleteRating(2)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Honestliz</td>
+                <td>Terror in Resonance</td>
+                <td>5</td>
+                <td>Really sad but very well written and unique
+                </td>
+                <td>
+                    <button onclick="deleteRating(3)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Serexolik</td>
+                <td>The Promised Neverland</td>
+                <td>3</td>
+                <td>Season 1 was amazing, but season 2 was really bad
+                </td>
+                <td>
+                    <button onclick="deleteRating(4)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>PeppermintP</td>
+                <td>Hunter x Hunter</td>
+                <td>5</td>
+                <td>Such an original anime and I love the main
+                    characters
+                </td>
+                <td>
+                    <button onclick="deleteRating(5)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>wstr000</td>
+                <td>Attack on Titan</td>
+                <td>4</td>
+                <td>The later seasons confuse me, but still one of my
+                    faves
+                </td>
+                <td>
+                    <button onclick="deleteRating(6)">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+
         <!--Insert-->
-        <div id="insert" style="display: block">
-            <form id="addRating">
-                <legend><strong>Add Rating</strong></legend>
-                <fieldset class="fields">
-                    <label> User </label>
-                    <select name="user" id="user">
-                        <option value="none" selected disabled hidden>Select User</option>
-                        <option value="1">Honestliz</option>
-                        <option value="2">Serexolik</option>
-                        <option value="3">Pebbles44</option>
-                        <option value="4">PeppermintP</option>
-                        <option value="5">wstr000</option>
-                        <option value="NULL">NULL</option>
-                    </select>
-                    <label> Anime </label> <input type="text" name="anime">
-                    <label> Rating </label> <input type="number" name="rating">
-                    <label> Review </label> <input type="text" name="review">
-                    <div class="btn-container">
-                        <input class="btn" type="submit" id="addRating" value="Add a Rating">
-                        <input class="btn" type="button" value="Cancel">
-                    </div>
-                </fieldset>
-                
-            </form>
-        </div>
+        <form id="addRating">
+            <legend><strong>Add Rating</strong></legend>
+            <fieldset class="fields">
+                <label> User </label>
+                <select name="user" id="user">
+                    <option value="none" selected disabled hidden>Select User</option>
+                    <option value="1">Honestliz</option>
+                    <option value="2">Serexolik</option>
+                    <option value="3">Pebbles44</option>
+                    <option value="4">PeppermintP</option>
+                    <option value="5">wstr000</option>
+                    <option value="NULL">NULL</option>
+                </select>
+                <label> Anime </label> <input type="text" name="anime">
+                <label> Rating </label> <input type="number" name="rating">
+                <label> Review </label> <input type="text" name="review">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="addRating" value="Add a Rating">
+                    <input class="btn" type="button" value="Cancel">
+                </div>
+            </fieldset>
+            
+        </form>
+
         <!--Update-->
         <p>&nbsp;</p>
-        <div id="update" style="display: block">
-            <form id="updateRating">
-                <legend><strong>Update Rating</strong></legend>
-                <fieldset class="fields">
-                    <label> User </label>
-                    <select name="user" id="user">
-                        <option value="none" selected disabled hidden>Select User</option>
-                        <option value="1">Honestliz</option>
-                        <option value="2">Serexolik</option>
-                        <option value="3">Pebbles44</option>
-                        <option value="4">PeppermintP</option>
-                        <option value="5">wstr000</option>
-                        <option value="NULL">NULL</option>
-                    </select>
-                    <label> Anime </label> <input type="text" name="anime">
-                    <label> Rating </label> <input type="number" name="rating">
-                    <label> Review </label> <input type="text" name="review">
-                    <div class="btn-container">
-                        <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
-                        <input class="btn" type="button" value="Cancel">
-                    </div>
-                </fieldset>
-                
-            </form>
+        <form id="updateRating">
+            <legend><strong>Update Rating</strong></legend>
+            <fieldset class="fields">
+                <label> User </label>
+                <select name="user" id="user">
+                    <option value="none" selected disabled hidden>Select User</option>
+                    <option value="1">Honestliz</option>
+                    <option value="2">Serexolik</option>
+                    <option value="3">Pebbles44</option>
+                    <option value="4">PeppermintP</option>
+                    <option value="5">wstr000</option>
+                    <option value="NULL">NULL</option>
+                </select>
+                <label> Anime </label> <input type="text" name="anime">
+                <label> Rating </label> <input type="number" name="rating">
+                <label> Review </label> <input type="text" name="review">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
+                    <input class="btn" type="button" value="Cancel">
+                </div>
+            </fieldset>
+        </form>
     </section>
 </body>
-<footer>
-    <p>&copy; 2023 Crispyroll</p>
-</footer>
-</html>

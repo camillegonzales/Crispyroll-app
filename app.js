@@ -15,7 +15,7 @@ var exphbs  = require('express-handlebars');        // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));      // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 var db      = require('./database/db-connector')    // Database
-PORT        = 4200;                                 // Set a port number at the top so it's easy to change in the future
+PORT        = 4400;                                 // Set a port number at the top so it's easy to change in the future
 
 /*
     ROUTES
