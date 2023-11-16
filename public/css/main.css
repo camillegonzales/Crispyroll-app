@@ -166,6 +166,7 @@ input {
     margin: 5%;
     padding: 5%;
     background-color: #9214b817;
+    min-width: max-content;
 }
 
 select {
