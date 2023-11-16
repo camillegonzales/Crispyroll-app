@@ -67,14 +67,12 @@ addRowToTable = (data) => {
     let studioIDCell = document.createElement("TD");
     let studioNameCell = document.createElement("TD");
     let yearFoundedCell = document.createElement("TD");
-
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     studioIDCell.innerText = newRow.studio_id;
     studioNameCell.innerText = newRow.studio_name;
     yearFoundedCell.innerText = newRow.year_founded;
-
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function() {
