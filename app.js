@@ -100,6 +100,7 @@ app.put('/put-studio-ajax', function(req,res,next){
     let year_founded = parseInt(data.year_founded);
 
     let updateStudio = `UPDATE Studios SET year_founded = ${year_founded} WHERE studio_id = ${studio_name}`;
+    let selectStudio = `SELECT * FROM Studios WHERE studio_id = ${studio_name}`;
 
   
           // Run the 1st query
@@ -115,7 +116,16 @@ app.put('/put-studio-ajax', function(req,res,next){
               // table on the front-end
               else
               {
-                  res.send(rows);
+                  // Run the second query
+                  db.pool.query(selectStudio, [studio_name], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
               }
   })});
 

@@ -76,7 +76,7 @@ function updateRow(data, studio_id){
     }
 }
 
-addRowToTable = (data) => {
+/* addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("studios-table");
@@ -127,4 +127,4 @@ addRowToTable = (data) => {
     option.value = newRow.studio_id;
     selectMenu.add(option);
     // End of new step 8 code.
-} 
+} */
