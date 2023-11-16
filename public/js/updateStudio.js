@@ -41,7 +41,7 @@ updateStudioForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             updateRow(xhttp.response, studioNameValue);
-            addRowToTable(xhttp.response);
+            // addRowToTable(xhttp.response);
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
