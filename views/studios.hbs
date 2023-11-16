@@ -64,8 +64,8 @@
             <form id="update-studio-form-ajax">
                 <legend><strong>Update Studio</strong></legend>
                 <fieldset class="fields">
-                    <label for="input_studio_name"> Studio Name </label>
-                    <select name="input_studio_name" id="mySelect">
+                    <label for="input-studio-name"> Studio Name </label>
+                    <select name="input-studio-name" id="mySelect">
                         <option value="test">Select a Studio</option>
                         {{#each data}}
                         <option value="{{this.studio_id}}">
@@ -74,7 +74,7 @@
                         {{/each}}
                     </select>
                     <label for="input_year_founded"> Year Founded </label> <input type="number"
-                        name="input_year_founded" id="year_founded_update">
+                        name="input_year_founded" id="year-founded-update">
                     <div class="btn-container">
                         <input class="btn" type="submit" id="updateStudio" value="Save Update Studio">
                     </div>
