@@ -2,7 +2,7 @@
     <header>
         <nav>
             <div class="logo"><a href="index.html">CRISPYROLL</a></div>
-            <div class ="nav-links">
+            <div class="nav-links">
                 <div class="highlight"><a href="users.html">Users</a></div>
                 <a href="animes.html">Animes</a>
                 <a href="studios.html">Studios</a>
@@ -91,5 +91,34 @@
                 </div>
             </fieldset>
         </form>
+        <div>
+            <form id="assign">
+                <legend><strong>Assign User to Anime</strong></legend>
+                <fieldset class="fields">
+                    <label>Select User</label>
+                    <select name="user" id="user">
+                        <option value="none" selected disabled hidden>Select User</option>
+                        <option value="1">Honestliz</option>
+                        <option value="2">Serexolik</option>
+                        <option value="3">Pebbles44</option>
+                        <option value="4">PeppermintP</option>
+                        <option value="5">wstr000</option>
+                    </select>
+                    <label>Select Anime</label>
+                    <select name="anime" id="anime">
+                        <option value="none" selected disabled hidden>Select Anime</option>
+                        <option value="1">Hunter x Hunter</option>
+                        <option value="2">Attack on Titan</option>
+                        <option value="3">Terror in Resonance</option>
+                        <option value="4">Jujutsu Kaisen</option>
+                        <option value="5">The Promised Neverland</option>
+                    </select>
+                    <div class="btn-container">
+                        <input class="btn" type="submit" id="AssignUserAnime" value="Assign">
+                        <input class="btn" type="button" value="Cancel">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </section>
 </body>
