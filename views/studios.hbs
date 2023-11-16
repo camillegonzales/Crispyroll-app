@@ -12,9 +12,11 @@
             </div>
         </nav>
     </header>
+
     <section>
         <h1>STUDIOS</h1>
         <div id="browse" style="display: block">
+
             <table id="studios-table" border="1" cellpadding="5">
                 <thead>
                     <tr>
@@ -26,7 +28,7 @@
                 </thead>
                 <tbody>
                     {{#each data}}
-                    <tr data-value={{this.id}}>
+                    <tr data-value={{this.studio_id}}>
                         <td>{{this.studio_id}}</td>
                         <td>{{this.studio_name}}</td>
                         <td>{{this.year_founded}}</td>
@@ -36,8 +38,10 @@
                 </tbody>
             </table>
             <script src="./js/deleteStudio.js"></script>
+
             <p>&nbsp;</p>
         </div>
+
         <!--Insert-->
         <div id="insert" style="display: block">
             <form id="add-studio-form-ajax">
@@ -51,6 +55,7 @@
                 </fieldset>
             </form>
         </div>
+
         <!--Update-->
         <p>&nbsp;</p>
         <div id="update" style="display: block">
@@ -73,8 +78,9 @@
                     </div>
                 </fieldset>
             </form>
-        </div><!-- update -->
+        </div>
     </section>
+
     <script src="./js/addStudio.js"></script>
     <script src="./js/updateStudio.js"></script>
 </body>
