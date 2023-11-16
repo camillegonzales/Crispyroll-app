@@ -1,3 +1,5 @@
+//Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // code for deletePerson using regular javascript/xhttp
 function deleteStudio(studio_id) {
     // Put our data we want to send in a javascript object

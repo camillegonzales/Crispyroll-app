@@ -1,3 +1,5 @@
+//Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Get the objects we need to modify
 let updateStudioForm = document.getElementById('update-studio-form-ajax');
 
@@ -15,8 +17,8 @@ updateStudioForm.addEventListener("submit", function (e) {
     let studioNameValue = inputStudioName.value;
     let yearFoundedValue = inputYearFounded.value;
     
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being bassed NULL for homeworld
+    // currently the database table for studios does not allow updating values to NULL
+    // so we must abort if being bassed NULL for year_founded
 
     if (isNaN(yearFoundedValue)) 
     {
@@ -64,13 +66,13 @@ function updateRow(data, studio_id){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == studio_id) {
 
-            // Get the location of the row where we found the matching person ID
+            // Get the location of the row where we found the matching studio ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of homeworld value
+            // Get td of year_founded value
             let td = updateRowIndex.getElementsByTagName("td")[2];
 
-            // Reassign homeworld to our value we updated to
+            // Reassign year_founded to our value we updated to
             td.innerHTML = parsedData[0].year_founded; 
        }
     }

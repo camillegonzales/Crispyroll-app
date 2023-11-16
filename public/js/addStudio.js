@@ -1,3 +1,5 @@
+//Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Get the objects we need to modify
 let addStudioForm = document.getElementById('add-studio-form-ajax');
 
@@ -49,7 +51,7 @@ addStudioForm.addEventListener("submit", function (e) {
 
 
 // Creates a single row from an Object representing a single record from 
-// bsg_people
+// studios
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -91,7 +93,7 @@ addRowToTable = (data) => {
     // Add the row to the table
     currentTable.appendChild(row);
 
-    // Find drop down menu, create a new option, fill data in the option (full name, id),
+    // Find drop down menu, create a new option, fill data in the option (studio_name, id),
     // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
     let selectMenu = document.getElementById("mySelect");
     let option = document.createElement("option");

@@ -1,3 +1,5 @@
+//Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // App.js
 
 /*
@@ -22,9 +24,25 @@ app.get("/", function(req, res){
     return res.render('index')
   });
 
-  app.get("/index.html", function(req, res){
+app.get("/index.html", function(req, res){
     return res.render('index')
-  });
+    });
+
+app.get("/users.html", function(req, res){
+    return res.render('users')
+    });
+
+app.get("/animes.html", function(req, res){
+    return res.render('animes')
+    });
+
+app.get("/ratings.html", function(req, res){
+    return res.render('ratings')
+    });
+
+app.get("/users_animes.html", function(req, res){
+    return res.render('users_animes')
+    });
 
 app.get('/studios.html', function(req, res)
     {  

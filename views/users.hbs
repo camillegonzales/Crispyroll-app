@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crispyroll</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">CRISPYROLL</a></div>
+            <div class ="nav-links">
+                <div class="highlight"><a href="users.html">Users</a></div>
+                <a href="animes.html">Animes</a>
+                <a href="studios.html">Studios</a>
+                <a href="ratings.html">Ratings</a>
+                <a href="users_animes.html">Users/Animes</a>
+            </div>
+        </nav>
+    </header>
+    <section>
+    <h1>USERS</h1>
+    <div id="browse" style="display: block">
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Honestliz</td>
+                <td>liz_re6@gmail.com</td>
+                <td>
+                    <button onclick="deleteUser(1)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Serexolik</td>
+                <td>mparker22@gmail.com</td>
+                <td>
+                    <button onclick="deleteUser(2)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Pebbles44</td>
+                <td>seanmorg@yahoo.com</td>
+                <td>
+                    <button onclick="deleteUser(3)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PeppermintP</td>
+                <td>pmin873@gmail.com</td>
+                <td>
+                    <button onclick="deleteUser(4)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>wstr000</td>
+                <td>lilyt01@yahoo.com</td>
+                <td>
+                    <button onclick="deleteUser(5)">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+    </div>
+    <!--Insert-->
+    <div id="insert" style="display: block">
+        <form id="addUser">
+            <legend><strong>Add User</strong></legend>
+            <fieldset class="fields">
+                <label> Username </label> <input type="text" name="name">
+                <label> Email </label> <input type="text" name="population">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="addUser" value="Add a User">
+                    <input class="btn" type="button" value="Cancel">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <!--Update-->
+    <p>&nbsp;</p>
+    <div id="update" style="display: block">
+        <form id="updateUser">
+            <legend><strong>Update User</strong></legend>
+            <fieldset class="fields">
+                <label> Username </label> <input type="text" name="name">
+                <label> Email </label> <input type="text" name="population">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
+                    <input class="btn" type="button" value="Cancel">
+                </div>
+            </fieldset>
+        </form>
+    </div><!-- update -->
+    </section>
+</body>
+<footer>
+    <p>&copy; 2023 Crispyroll</p>
+</footer>
+</html>
