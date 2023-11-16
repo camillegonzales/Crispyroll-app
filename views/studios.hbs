@@ -14,58 +14,51 @@
 
     <section>
         <h1>STUDIOS</h1>
-        <div id="browse" style="display: block">
-
-            <table id="studios-table" border="1" cellpadding="5">
-                <thead>
-                    <tr>
-                        {{#each data.[0]}}
-                        <th>{{@key}}</th>
-                        {{/each}}
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each data}}
-                    <tr data-value={{this.studio_id}}>
-                        <td>{{this.studio_id}}</td>
-                        <td>{{this.studio_name}}</td>
-                        <td>{{this.year_founded}}</td>
-                        <td><button onclick="deleteStudio({{this.studio_id}})">Delete</button></td>
-                    </tr>
+        <!-- Studios table -->
+        <table id="studios-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>{{@key}}</th>
                     {{/each}}
-                </tbody>
-            </table>
-            <script src="./js/deleteStudio.js"></script>
-
-            <p>&nbsp;</p>
-        </div>
-
-        <!--Insert-->
-        <div id="insert" style="display: block">
-            
-            <form id="add-studio-form-ajax">
-                <legend><strong>Add Studios</strong></legend>
-                <fieldset class="fields">
-                    <label> Studio Name </label> <input type="text" name="input-studio-name" id="input-studio-name">
-                    <label> Year Founded </label> <input type="number" name="input-year-founded" id="input-year-founded">
-                    <div class="btn-container">
-                        <input class="btn" type="submit" id="addStudio" value="Add a Studio">
-                    </div>
-                </fieldset>
-            </form>
-            <script src="./js/addStudio.js"></script>
-        </div>
-
-        <!--Update-->
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr data-value={{this.studio_id}}>
+                    <td>{{this.studio_id}}</td>
+                    <td>{{this.studio_name}}</td>
+                    <td>{{this.year_founded}}</td>
+                    <td><button onclick="deleteStudio({{this.studio_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/deleteStudio.js"></script>
         <p>&nbsp;</p>
-        <div id="update" style="display: block">
-            
+
+        <!-- Insert using AJAX -->
+        <form id="add-studio-form-ajax">
+            <legend><strong>Add Studios</strong></legend>
+            <fieldset class="fields">
+                <label> Studio Name </label> <input type="text" name="input-studio-name" id="input-studio-name">
+                <label> Year Founded </label> <input type="number" name="input-year-founded" id="input-year-founded">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="addStudio" value="Add a Studio">
+                </div>
+            </fieldset>
+        </form>
+        <script src="./js/addStudio.js"></script>
+        <p>&nbsp;</p>
+
+        <!-- Update using AJAX -->
             <form id="update-studio-form-ajax">
                 <legend><strong>Update Studio</strong></legend>
                 <fieldset class="fields">
                     <label for="input-studio-name"> Studio Name </label>
-                    <select name="input-studio-name" id="mySelect">
+                    <!-- Dynamic dropdown for Studios -->
+                    <select class="dropdown" name="input-studio-name" id="mySelect">
                         <option value="test">Select a Studio</option>
                         {{#each data}}
                         <option value="{{this.studio_id}}">
@@ -81,7 +74,6 @@
                 </fieldset>
             </form>
             <script src="./js/updateStudio.js"></script>
-        </div>
-    </section>
 
+    </section>
 </body>
