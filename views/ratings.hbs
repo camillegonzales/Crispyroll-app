@@ -1,3 +1,5 @@
+<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
 <body>
     <header>
         <nav>
@@ -14,88 +16,29 @@
 
     <section>
         <h1>RATINGS</h1>
-
-        <table border="1" cellpadding="5">
-            <tr>
-
-                <th>ID</th>
-                <th>User</th>
-                <th>Anime</th>
-                <th>Rating</th>
-                <th>Review</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-
-                <td>NULL</td>
-                <td>Hunter x Hunter</td>
-                <td>5</td>
-                <td>My favorite anime of all time!!</td>
-                <td>
-                    <button onclick="deleteRating(1)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-
-                <td>Honestliz</td>
-                <td>Jujutsu Kaisen</td>
-                <td>5</td>
-                <td>One of the best animes out there, the plot is so
-                    thought out and the characters are all brilliantly
-                    written</td>
-                <td>
-                    <button onclick="deleteRating(2)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Honestliz</td>
-                <td>Terror in Resonance</td>
-                <td>5</td>
-                <td>Really sad but very well written and unique
-                </td>
-                <td>
-                    <button onclick="deleteRating(3)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Serexolik</td>
-                <td>The Promised Neverland</td>
-                <td>3</td>
-                <td>Season 1 was amazing, but season 2 was really bad
-                </td>
-                <td>
-                    <button onclick="deleteRating(4)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>PeppermintP</td>
-                <td>Hunter x Hunter</td>
-                <td>5</td>
-                <td>Such an original anime and I love the main
-                    characters
-                </td>
-                <td>
-                    <button onclick="deleteRating(5)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>wstr000</td>
-                <td>Attack on Titan</td>
-                <td>4</td>
-                <td>The later seasons confuse me, but still one of my
-                    faves
-                </td>
-                <td>
-                    <button onclick="deleteRating(6)">Delete</button>
-                </td>
-            </tr>
+        <!-- Ratings table -->
+        <table id="ratings-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>{{@key}}</th>
+                    {{/each}}
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr data-value={{this.rating_id}}>
+                    <td>{{this.user_id}}</td>
+                    <td>{{this.anime_id}}</td>
+                    <td>{{this.rating}}</td>
+                    <td>{{this.review}}</td>
+                    <td><button onclick="deleteReview({{this.review_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
+        <script src="./js/deleteReview.js"></script>
         <p>&nbsp;</p>
 
         <!--Insert-->
