@@ -3,13 +3,13 @@
 <body>
     <header>
         <nav>
-            <div class="logo"><a href="index.html">CRISPYROLL</a></div>
+            <div class="logo"><a href="/index">CRISPYROLL</a></div>
             <div class="nav-links">
-                <a href="users.html">Users</a>
-                <a href="animes.html">Animes</a>
-                <div class="highlight"><a href="studios.html">Studios</a></div>
-                <a href="ratings.html">Ratings</a>
-                <a href="users_animes.html">Users/Animes</a>
+                <a href="/users">Users</a>
+                <a href="/animes">Animes</a>
+                <div class="highlight"><a href="/studios">Studios</a></div>
+                <a href="/ratings">Ratings</a>
+                <a href="/users_animes">Users/Animes</a>
             </div>
         </nav>
     </header>
@@ -20,14 +20,14 @@
         <table id="studios-table" border="1" cellpadding="5">
             <thead>
                 <tr>
-                    {{#each data.[0]}}
+                    {{#each studios.[0]}}
                     <th>{{@key}}</th>
                     {{/each}}
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each data}}
+                {{#each studios}}
                 <tr data-value={{this.studio_id}}>
                     <td>{{this.studio_id}}</td>
                     <td>{{this.studio_name}}</td>
@@ -62,7 +62,7 @@
                     <!-- Dynamic dropdown for Studios -->
                     <select class="dropdown" name="input-studio-name" id="mySelect">
                         <option value="test">Select a Studio</option>
-                        {{#each data}}
+                        {{#each studios}}
                         <option value="{{this.studio_id}}">
                             {{this.studio_name}}
                         </option>
