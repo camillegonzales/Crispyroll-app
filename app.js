@@ -24,27 +24,106 @@ app.get("/", function(req, res){
     return res.render('index')
   });
 
-app.get("/index.html", function(req, res){
+app.get("/index", function(req, res){
     return res.render('index')
     });
 
-app.get("/users.html", function(req, res){
+app.get("/users", function(req, res){
     return res.render('users')
     });
 
-app.get("/animes.html", function(req, res){
+app.get("/animes", function(req, res){
     return res.render('animes')
     });
 
-app.get("/ratings.html", function(req, res){
-    return res.render('ratings')
+app.get("/ratings", function(req, res)
+    {  
+        // Declare Query 1
+        let query1 = "SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings INNER JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id;";
+
+        let query2 = "SELECT * FROM Users;";
+
+        let query3 = "SELECT * FROM Animes;";
+
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {
+
+            let ratings = rows;
+
+            // Run the second query
+            db.pool.query(query2, (error, rows, fields) => {
+            
+                let users = rows;
+
+                // Run 3rd query
+                db.pool.query(query3, (error, rows, fields) => {
+
+                    let animes = rows;
+
+                    return res.render('ratings', {ratings: ratings, users: users, animes: animes});
+                })
+                
+            })
+        })
+    }); 
+
+app.post('/add-rating-ajax', function(req, res) 
+    {
+        // Capture the incoming data and parse it back to a JS object
+        let data = req.body;
+
+        // Capture NULL values
+        let rating_id = parseInt(data.rating_id);
+        if (isNaN(rating_id))
+        {
+            rating_id = 'NULL'
+        }
+
+        let user_name = parseInt(data.user_name);
+        if (isNaN(user_name))
+        {
+            user_name = 'NULL'
+        }
+
+        // Create the query and run it on the database
+        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES ('${data.user_name}', '${data.title}', '${data.rating}', '${data.review}');`;
+        db.pool.query(query1, function(error, rows, fields){
+
+            // Check to see if there was an error
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+            else
+            {
+                // If there was no error, perform a SELECT * on bsg_people
+                query2 = `SELECT * FROM Ratings;`;
+                db.pool.query(query2, function(error, rows, fields){
+
+                    // If there was an error on the second query, send a 400
+                    if (error) {
+                        
+                        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                        console.log(error);
+                        res.sendStatus(400);
+                    }
+                    // If all went well, send the results of the query back.
+                    else
+                    {
+                        res.send(rows);
+                    }
+                })
+            }
+        })
     });
 
-app.get("/users_animes.html", function(req, res){
-    return res.render('users_animes')
+app.get("/users_animes", function(req, res) {
+    return res.render('animes')
     });
 
-app.get('/studios.html', function(req, res)
+app.get('/studios', function(req, res)
     {  
         // Declare Query 1
         let query1 = "SELECT studio_id, studio_name, year_founded FROM Studios;";
@@ -52,12 +131,11 @@ app.get('/studios.html', function(req, res)
         // Run the 1st query
         db.pool.query(query1, function(error, rows, fields) {
 
-            res.render('studios', {data:rows}
+            res.render('studios', {studios:rows}
             );
         })
     });                                                                               
 
-// app.js - ROUTES section
 
 app.post('/add-studio-ajax', function(req, res) 
 {
