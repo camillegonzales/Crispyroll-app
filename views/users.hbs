@@ -35,6 +35,7 @@
                 {{/each}}
             </tbody>
         </table>
+        <script src="./js/deleteUser.js"></script>
         <p>&nbsp;</p>
 
         <!-- Insert using AJAX -->
@@ -81,7 +82,7 @@
             <fieldset class="fields">
                 <label for="input-user-name"> Username </label>
                 <!-- Dynamic dropdown for Users -->
-                <select class="dropdown" name="input-user-name" id="mySelect1">
+                <select class="dropdown" name="input-user-name" id="mySelect">
                     <option value="test">Select a User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">
@@ -90,7 +91,7 @@
                     {{/each}}
                 </select>
                 <label for="input-anime"> Anime </label>
-                <select class="dropdown" name="input-anime" id="mySelect2">
+                <select class="dropdown" name="input-anime" id="mySelectAnime">
                     <option value="test">Select an Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">

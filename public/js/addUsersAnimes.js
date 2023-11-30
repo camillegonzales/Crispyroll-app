@@ -10,8 +10,8 @@ addUserForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputUserName = document.getElementById("mySelect1");
-    let inputTitle = document.getElementById("mySelect2");
+    let inputUserName = document.getElementById("mySelect");
+    let inputTitle = document.getElementById("mySelectAnime");
 
     // Get the values from the form fields
     let userNameValue = inputUserName.value;
