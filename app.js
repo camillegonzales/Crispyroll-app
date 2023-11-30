@@ -115,8 +115,8 @@ app.put('/put-user-ajax', function(req,res,next){
     let user_name = parseInt(data.user_name);
     let user_email = parseInt(data.user_email);
 
-    let updateUser = `UPDATE Users SET user_name = ${user_name}, user_email = ${user_email} WHERE user_id = ${user_id}`;
-    let selectUser = `SELECT * FROM Users WHERE user_id = ${user_id}`;
+    let updateUser = `UPDATE Users SET user_email = ${user_email} WHERE user_id = ${user_name}`;
+    let selectUser = `SELECT * FROM Users WHERE user_id = ${user_name}`;
 
   
           // Run the 1st query
@@ -195,8 +195,8 @@ app.post('/add-anime-ajax', function(req, res)
         // presents it on the screen
         else
         {
-            // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM Studios;`;
+            // If there was no error, perform a SELECT * on Animes
+            query2 = `SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;`;
             db.pool.query(query2, function(error, rows, fields){
 
                 // If there was an error on the second query, send a 400
