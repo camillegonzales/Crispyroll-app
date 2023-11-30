@@ -108,6 +108,7 @@ app.get("/animes", function(req, res){
             return res.render('animes', {animes: animes, studios: studios});
 
     })
+})
 });
 
 app.post('/add-anime-ajax', function(req, res) 
