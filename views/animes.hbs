@@ -31,11 +31,12 @@
                     <td>{{this.title}}</td>
                     <td>{{this.studio_name}}</td>
                     <td>{{this.num_episode}}</td>
-                    <td><button onclick="deleteRating({{this.anime_id}})">Delete</button></td>
+                    <td><button onclick="deleteAnime({{this.anime_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
+        <script src="./js/deleteAnime.js"></script>
         <p>&nbsp;</p>
 
 

@@ -1,15 +1,15 @@
 //Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // code for deletePerson using regular javascript/xhttp
-function deleteStudio(studio_id) {
+function deleteAnime(anime_id) {
     // Put our data we want to send in a javascript object
     let data = {
-      studio_id: studio_id
+      anime_id: anime_id
     };
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("DELETE", "/delete-studio-ajax", true);
+    xhttp.open("DELETE", "/delete-anime-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -17,7 +17,7 @@ function deleteStudio(studio_id) {
         if (xhttp.readyState == 4 && xhttp.status == 204) {
 
             // Add the new data to the table
-            deleteRow(studio_id);
+            deleteRow(anime_id);
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
@@ -27,25 +27,25 @@ function deleteStudio(studio_id) {
     xhttp.send(JSON.stringify(data));
 }
 
-function deleteRow(studio_id){
+function deleteRow(anime_id){
 
-    let table = document.getElementById("studios-table");
+    let table = document.getElementById("animes-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == studio_id) {
+       if (table.rows[i].getAttribute("data-value") == anime_id) {
             table.deleteRow(i);
-            deleteDropDownMenu(studio_id);
+            deleteDropDownMenu(anime_id);
             break;
        }
     }
 }
 
 
-function deleteDropDownMenu(studio_id){
-  let selectMenu = document.getElementById("mySelectStudio");
+function deleteDropDownMenu(anime_id){
+  let selectMenu = document.getElementById("mySelectAnime");
   for (let i = 0; i < selectMenu.length; i++){
-    if (Number(selectMenu.options[i].value) === Number(studio_id)){
+    if (Number(selectMenu.options[i].value) === Number(anime_id)){
       selectMenu[i].remove();
       break;
     } 
