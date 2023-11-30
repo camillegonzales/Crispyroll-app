@@ -31,16 +31,29 @@ app.get("/index", function(req, res){
 
 app.get("/users", function(req, res){
     // Declare Query 1
-    let query1 = "SELECT user_id, user_name, user_email FROM Users";
+    let query1 = "SELECT user_id, user_name, user_email FROM Users;";
+    let query2 = "SELECT * FROM Animes;";
+    let query3 = "SELECT * FROM Studios;";
+
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields) {
 
-        let users = rows
+        let users = rows;
 
-        res.render('users', {users:users}
-        );
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            let animes = rows;
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let studios = rows;
+
+                return res.render('users', {users:users, animes: animes, studios:studios});
+
     })
+})})
 });
 
 app.post('/add-user-ajax', function(req, res) 
@@ -148,7 +161,7 @@ app.put('/put-user-ajax', function(req,res,next){
 
 app.get("/animes", function(req, res){
     // Declare Query 1
-    let query1 = "SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;";
+    let query1 = "SELECT Animes.anime_id, Animes.title, Studios.studio_name, Animes.num_episode FROM Animes INNER JOIN Studios ON Studios.studio_id = Animes.studio_id;";
 
     let query2 = "SELECT * FROM Studios;";
 
@@ -380,15 +393,15 @@ app.put('/put-rating-ajax', function(req,res,next){
     let rating_id = parseInt(data.rating_id);
     let user_name = parseInt(data.user_name);
     let title = parseInt(data.title);
-    let rating = parseInt(data.rating);
-    let review = parseInt(data.review);
+    let rating = data.rating;
+    let review = data.review;
 
     let updateRating = `UPDATE Ratings SET user_id = ${user_name}, anime_id = ${title}, rating = ${rating}, review = ${review} WHERE rating_id = ${rating_id};`;
     let selectRating = `SELECT * FROM Ratings WHERE rating_id = ${rating_id};`;
-
+    
   
           // Run the 1st query
-          db.pool.query(updateRating, [user_name, title, rating, review, rating_id], function(error, rows, fields){
+          db.pool.query(updateRating, [rating_id, user_name, title, rating, review], function(error, rows, fields){
               if (error) {
   
               // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.

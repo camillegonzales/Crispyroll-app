@@ -14,8 +14,7 @@
 
     <section>
         <h1>ANIMES</h1>
-
-
+        <!-- Animes table -->
         <table id="animes-table" border="1" cellpadding="5">
             <thead>
                 <tr>
@@ -25,6 +24,17 @@
                     <th>Delete</th>
                 </tr>
             </thead>
+            <tbody>
+                {{#each animes}}
+                <tr data-value={{this.anime_id}}>
+                    <td>{{this.anime_id}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.studio_name}}</td>
+                    <td>{{this.num_episode}}</td>
+                    <td><button onclick="deleteRating({{this.anime_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
         <p>&nbsp;</p>
 
@@ -34,6 +44,15 @@
             <legend><strong>Add Anime</strong></legend>
             <fieldset class="fields">
                 <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title">
+                <label> Studio Name </label>
+                <select class="dropdown" name="input-studio-name" id="mySelect">
+                    <option value="test">Select a Studio</option>
+                    {{#each studios}}
+                    <option value="{{this.studio_id}}">
+                        {{this.studio_name}}
+                    </option>
+                    {{/each}}
+                </select>
                 <label> Number of Episodes </label> <input type="number" name="input-num-episode" id="input-num-episode">
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addAnime" value="Add an Anime">
@@ -47,7 +66,22 @@
         <form id="update-anime-form-ajax">
             <legend><strong>Update Anime</strong></legend>
             <fieldset class="fields">
-                <label for="input-anime-title"> Anime Title </label> <input type="text" name="name">
+                <label for="input-anime-title"> Anime Title </label> 
+                <select name="input-title" id="input-anime-title">
+                    <option value="">Select Anime</option>
+                    {{#each animes}}
+                    <option value="{{this.anime_id}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
+                <label> Studio Name </label>
+                <select class="dropdown" name="input-studio-name" id="mySelect">
+                    <option value="test">Select a Studio</option>
+                    {{#each studios}}
+                    <option value="{{this.studio_id}}">
+                        {{this.studio_name}}
+                    </option>
+                    {{/each}}
+                </select>
                 <label for="input-num-episode"> Number of Episodes </label> <input type="text" name="input-num-episode"
                     id="num-episode-update">
                 <div class="btn-container">

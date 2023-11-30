@@ -90,17 +90,17 @@ function updateRow(data, rating_id){
             // Get td of homeworld value
             let td2 = updateRowIndex.getElementsByTagName("td")[2];
             // Reassign homeworld to our value we updated to
-            td2.innerHTML = parsedData[1].title; 
+            td2.innerHTML = parsedData[0].title; 
 
             // Get td of homeworld value
             let td3 = updateRowIndex.getElementsByTagName("td")[3];
             // Reassign homeworld to our value we updated to
-            td3.innerHTML = parsedData[2].rating; 
+            td3.innerHTML = parsedData[0].rating; 
 
             // Get td of homeworld value
             let td4 = updateRowIndex.getElementsByTagName("td")[4];
             // Reassign homeworld to our value we updated to
-            td4.innerHTML = parsedData[3].review; 
+            td4.innerHTML = parsedData[0].review; 
 
        }
     }
