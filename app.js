@@ -244,7 +244,7 @@ app.post('/add-rating-ajax', function(req, res)
     });
 
 app.get("/users_animes", function(req, res) {
-    return res.render('animes')
+    return res.render('users_animes')
     });
 
 app.get('/studios', function(req, res)
