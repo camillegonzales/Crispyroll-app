@@ -46,10 +46,10 @@ app.post('/add-user-ajax', function(req, res)
     let data = req.body;
 
     // Capture NULL values
-    let studio_id = parseInt(data.studio_id);
-    if (isNaN(studio_id))
+    let user_id = parseInt(data.user_id);
+    if (isNaN(user_id))
     {
-        studio_id = 'NULL'
+        user_id = 'NULL'
     }
 
     // Create the query and run it on the database

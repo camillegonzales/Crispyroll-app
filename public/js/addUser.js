@@ -20,7 +20,7 @@ addUserForm.addEventListener("submit", function (e) {
     // Put our data we want to send in a javascript object
     let data = {
         user_name: userNameValue,
-        year_founded: yearFoundedValue,
+        user_email: userEmailValue,
     }
     
     // Setup our AJAX request
@@ -74,7 +74,7 @@ addRowToTable = (data) => {
     // Fill the cells with correct data
     userIDCell.innerText = newRow.user_id;
     userNameCell.innerText = newRow.user_name;
-    userEmailCell.innerText = newRow.year_founded;
+    userEmailCell.innerText = newRow.user_email;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function() {
