@@ -115,8 +115,8 @@ app.put('/put-user-ajax', function(req,res,next){
     let user_name = parseInt(data.user_name);
     let user_email = parseInt(data.user_email);
 
-    let updateUser = `UPDATE Users SET user_name = ${user_name}, user_email = ${user_email} WHERE user_id = ${user_id}`;
-    let selectUser = `SELECT * FROM Users WHERE user_id = ${user_id}`;
+    let updateUser = `UPDATE Users SET user_email = ${user_email} WHERE user_id = ${user_name}`;
+    let selectUser = `SELECT * FROM Users WHERE user_id = ${user_name}`;
 
   
           // Run the 1st query
