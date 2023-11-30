@@ -77,7 +77,7 @@ function updateRow(data, rating_id){
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == rating-id) {
+       if (table.rows[i].getAttribute("data-value") == rating_id) {
 
             // Get the location of the row where we found the matching person ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
@@ -90,17 +90,17 @@ function updateRow(data, rating_id){
             // Get td of homeworld value
             let td2 = updateRowIndex.getElementsByTagName("td")[2];
             // Reassign homeworld to our value we updated to
-            td2.innerHTML = parsedData[0].title; 
+            td2.innerHTML = parsedData[1].title; 
 
             // Get td of homeworld value
             let td3 = updateRowIndex.getElementsByTagName("td")[3];
             // Reassign homeworld to our value we updated to
-            td3.innerHTML = parsedData[0].rating; 
+            td3.innerHTML = parsedData[2].rating; 
 
             // Get td of homeworld value
             let td4 = updateRowIndex.getElementsByTagName("td")[4];
             // Reassign homeworld to our value we updated to
-            td4.innerHTML = parsedData[0].review; 
+            td4.innerHTML = parsedData[3].review; 
 
        }
     }
