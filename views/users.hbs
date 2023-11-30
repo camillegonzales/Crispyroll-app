@@ -73,5 +73,36 @@
             </fieldset>
         </form>
         <script src="./js/updateUser.js"></script>
+        <p>&nbsp;</p>
+
+        <!-- Assign user to anime using AJAX -->
+        <form id="add-users-animes-form-ajax">
+            <legend><strong>Assign Anime to User</strong></legend>
+            <fieldset class="fields">
+                <label for="input-user-name"> Username </label>
+                <!-- Dynamic dropdown for Users -->
+                <select class="dropdown" name="input-user-name" id="mySelect1">
+                    <option value="test">Select a User</option>
+                    {{#each users}}
+                    <option value="{{this.user_id}}">
+                        {{this.user_name}}
+                    </option>
+                    {{/each}}
+                </select>
+                <label for="input-anime"> Anime </label>
+                <select class="dropdown" name="input-anime" id="mySelect2">
+                    <option value="test">Select an Anime</option>
+                    {{#each animes}}
+                    <option value="{{this.anime_id}}">
+                        {{this.title}}
+                    </option>
+                    {{/each}}
+                </select>
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="addUsersAnimes" value="Assign">
+                </div>
+            </fieldset>
+        </form>
+        <script src="./js/addUsersAnimes.js"></script>
     </section>
 </body>

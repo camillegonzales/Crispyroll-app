@@ -14,7 +14,8 @@ const { engine } = require('express-handlebars');
 var exphbs  = require('express-handlebars');        // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));      // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
-var db      = require('./database/db-connector')    // Database
+var db      = require('./database/db-connector');    // Database
+const { title } = require('process');
 PORT        = 4400;                                 // Set a port number at the top so it's easy to change in the future
 
 /*
@@ -94,11 +95,11 @@ app.post('/add-user-ajax', function(req, res)
 app.delete('/delete-user-ajax/', function(req,res,next) {
     let data = req.body;
     let user_id = parseInt(data.user_id);
-    let deleteStudio = `DELETE FROM Users WHERE user_id = ${user_id}`;
+    let deleteUser = `DELETE FROM Users WHERE user_id = ${user_id}`;
   
   
     // Run the 1st query
-    db.pool.query(deleteStudio, [user_id], function(error, rows, fields) {
+    db.pool.query(deleteUser, [user_id], function(error, rows, fields) {
         if (error) {
 
         // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -120,7 +121,7 @@ app.put('/put-user-ajax', function(req,res,next){
 
   
           // Run the 1st query
-          db.pool.query(updateUser, [user_name, user_email], function(error, rows, fields){
+          db.pool.query(updateUser, [user_email, user_name], function(error, rows, fields){
               if (error) {
   
               // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -215,6 +216,62 @@ app.post('/add-anime-ajax', function(req, res)
         }
     })
 });
+
+app.delete('/delete-anime-ajax/', function(req,res,next) {
+    let data = req.body;
+    let anime_id = parseInt(data.anime_id);
+    let deleteAnime = `DELETE FROM Animes WHERE anime_id = ${anime_id}`;
+  
+  
+    // Run the 1st query
+    db.pool.query(deleteAnime, [anime_id], function(error, rows, fields) {
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+app.put('/put-anime-ajax', function(req,res,next){
+    let data = req.body;
+    let user_name = parseInt(data.user_name);
+    let user_email = parseInt(data.user_email);
+
+    let updateAnime = `UPDATE Animes
+    SET title = ${title}, studio_id = ${studio_id}, num_episode = ${num_episode}
+    WHERE anime_id = ${anime_id};`;
+    let selectAnime = `SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;`;
+
+  
+          // Run the 1st query
+          db.pool.query(updateAnime, [title, studio_id, num_episode], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectAnime, [], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+              }
+  })});
 
 app.get("/ratings", function(req, res)
     {  
@@ -368,6 +425,55 @@ app.get("/users_animes", function(req, res)
             );
         })
     });
+
+    app.post('/add-users-animes-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let user_id = parseInt(data.user_id);
+    if (isNaN(user_id))
+    {
+        user_id = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Users_Animes (user_id, anime_id) VALUES (${data.user_id}, ${data.anime_id});')`;
+    db.pool.query(query1, function(error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            // If there was no error, perform a SELECT * on Users
+            query2 = `SELECT Users_Animes.user_anime_id, Users.user_name, Animes.title FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 app.get('/studios', function(req, res)
     {  
