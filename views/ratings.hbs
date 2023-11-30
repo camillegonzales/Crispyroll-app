@@ -53,6 +53,7 @@
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
                     {{/each}}
                 </select>
+                <label> Anime </label>
                 <select name="input-title" id="input-title">
                     <option value="">Select Anime</option>
                     {{#each animes}}
@@ -70,28 +71,31 @@
 
         <!--Update-->
         <p>&nbsp;</p>
-        <form id="updateRating">
+        <form id="update-rating-form-ajax">
             <legend><strong>Update Rating</strong></legend>
             <fieldset class="fields">
+                <label> Rating ID </label> <input type="number" name="rating" id="rating-id-update">
                 <label> User </label>
-                <select name="input-user-name" id="input-user-name">
+                <select name="input-user-name" id="user-name-update">
                     <option value="">Select User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
                     {{/each}}
                 </select>
-                <select name="input-title" id="input-title">
+                <label> Anime </label>
+                <select name="input-title" id="title-update">
                     <option value="">Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
-                <label> Rating </label> <input type="number" name="rating">
-                <label> Review </label> <input type="text" name="review">
+                <label> Rating </label> <input type="number" name="rating" id="rating-update">
+                <label> Review </label> <input type="text" name="review" id="review-update">
                 <div class="btn-container">
                     <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
                 </div>
             </fieldset>
         </form>
+        <script src="./js/updateRating.js"></script>
     </section>
 </body>

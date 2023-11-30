@@ -318,6 +318,44 @@ app.delete('/delete-rating-ajax/', function(req,res,next) {
     })
 });
 
+app.put('/put-rating-ajax', function(req,res,next){
+    let data = req.body;
+    let rating_id = parseInt(data.rating_id);
+    let user_name = parseInt(data.user_name);
+    let title = parseInt(data.title);
+    let rating = parseInt(data.rating);
+    let review = parseInt(data.review);
+
+    let updateRating = `UPDATE Ratings SET user_id = ${user_name}, anime_id = ${title}, rating = ${rating}, review = ${review} WHERE rating_id = ${rating_id};`;
+    let selectRating = `SELECT * FROM Ratings WHERE rating_id = ${rating_id};`;
+
+  
+          // Run the 1st query
+          db.pool.query(updateRating, [user_name, title, rating, review, rating_id], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectRating, [rating_id], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+              }
+  })});
+
 app.get("/users_animes", function(req, res)
     {
         // Declare Query 1
