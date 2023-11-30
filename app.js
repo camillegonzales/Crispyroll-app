@@ -91,6 +91,41 @@ app.post('/add-user-ajax', function(req, res)
     })
 });
 
+app.put('/put-user-ajax', function(req,res,next){
+    let data = req.body;
+    let user_name = parseInt(data.user_name);
+    let user_email = parseInt(data.user_email);
+
+    let updateUser = `UPDATE Users SET user_name = ${user_name}, user_email = ${user_email} WHERE user_id = ${user_id}`;
+    let selectUser = `SELECT * FROM Users WHERE user_id = ${user_id}`;
+
+  
+          // Run the 1st query
+          db.pool.query(updateUser, [user_name, user_email], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectUser, [user_name], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+              }
+  })});
+
 app.get("/animes", function(req, res){
     // Declare Query 1
     let query1 = "SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;";
