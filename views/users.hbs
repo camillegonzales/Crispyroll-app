@@ -55,7 +55,16 @@
         <form id="update-user-form-ajax">
             <legend><strong>Update User</strong></legend>
             <fieldset class="fields">
-                <label for="input-user-name"> Username </label> <input type="text" name="name">
+                <label for="input-user-name"> Username </label>
+                <!-- Dynamic dropdown for Users -->
+                <select class="dropdown" name="input-user-name" id="mySelect">
+                    <option value="test">Select a User</option>
+                    {{#each studios}}
+                    <option value="{{this.user_id}}">
+                        {{this.user_name}}
+                    </option>
+                    {{/each}}
+                </select>
                 <label for="input-user-email"> Email </label> <input type="text" name="input-user-email"
                     id="user-email-update">
                 <div class="btn-container">
