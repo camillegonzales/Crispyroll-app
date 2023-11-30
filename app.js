@@ -35,7 +35,9 @@ app.get("/users", function(req, res){
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields) {
 
-        res.render('users', {users:rows}
+        let users = rows
+
+        res.render('users', {users:users}
         );
     })
 });
