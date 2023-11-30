@@ -194,7 +194,7 @@ app.post('/add-anime-ajax', function(req, res)
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Animes (title, studio_id, num_episode) VALUES ('${data.title}', '${data.studio_id}', '${data.num_episode}')`;
+    query1 = `INSERT INTO Animes (title, studio_id, num_episode) VALUES ('${data.title}', '${data.studio_name}', '${data.num_episode}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error

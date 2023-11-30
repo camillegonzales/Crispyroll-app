@@ -12,15 +12,18 @@ addAnimeForm.addEventListener("submit", function (e) {
     // Get form fields we need to get data from
     let inputAnimeTitle = document.getElementById("input-anime-title");
     let inputNumEpisode = document.getElementById("input-num-episode");
+    let inputStudioName = document.getElementById("input-studio-name")
 
     // Get the values from the form fields
     let animeTitleValue = inputAnimeTitle.value;
     let numEpisodeValue = inputNumEpisode.value;
+    let studioNameValue = inputStudioName.value;
 
     // Put our data we want to send in a javascript object
     let data = {
         title: animeTitleValue,
         num_episode: numEpisodeValue,
+        studio_name: studioNameValue
     }
     
     // Setup our AJAX request
@@ -38,6 +41,7 @@ addAnimeForm.addEventListener("submit", function (e) {
             // Clear the input fields for another transaction
             inputAnimeTitle.value = '';
             inputNumEpisode.value = '';
+            inputStudioName.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -69,12 +73,14 @@ addRowToTable = (data) => {
     let animeIDCell = document.createElement("TD");
     let animeTitleCell = document.createElement("TD");
     let numEpisodeCell = document.createElement("TD");
+    let studioNameCell = document.createElement("TD");
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     animeIDCell.innerText = newRow.user_id;
     animeTitleCell.innerText = newRow.user_name;
     numEpisodeCell.innerText = newRow.num_episode;
+    studioNameCell.innerText = newRow.studio_name;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function() {
@@ -85,6 +91,7 @@ addRowToTable = (data) => {
     row.appendChild(animeIDCell);
     row.appendChild(animeTitleCell);
     row.appendChild(numEpisodeCell);
+    row.appendChild(studioNameCell);
     row.appendChild(deleteCell);
 
     // Add a custom row attribute so the deleteRow function can find a newly added row
@@ -95,7 +102,7 @@ addRowToTable = (data) => {
 
     // Find drop down menu, create a new option, fill data in the option (user_name, id),
     // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
-    let selectMenu = document.getElementById("mySelect");
+    let selectMenu = document.getElementById("mySelectAnime");
     let option = document.createElement("option");
     option.text = newRow.anime_title;
     option.value = newRow.anime_id;

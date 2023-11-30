@@ -45,7 +45,7 @@
             <fieldset class="fields">
                 <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title">
                 <label> Studio Name </label>
-                <select class="dropdown" name="input-studio-name" id="mySelect">
+                <select class="dropdown" name="input-studio-name" id="mySelectStudio">
                     <option value="test">Select a Studio</option>
                     {{#each studios}}
                     <option value="{{this.studio_id}}">
@@ -66,15 +66,15 @@
         <form id="update-anime-form-ajax">
             <legend><strong>Update Anime</strong></legend>
             <fieldset class="fields">
-                <label for="input-anime-title"> Anime Title </label> 
-                <select name="input-title" id="input-anime-title">
+                <label> Anime Title </label> 
+                <select class="dropdown" name="input-title" id="mySelectAnime">
                     <option value="">Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
                 <label> Studio Name </label>
-                <select class="dropdown" name="input-studio-name" id="mySelect">
+                <select class="dropdown" name="input-studio-name" id="mySelectStudio">
                     <option value="test">Select a Studio</option>
                     {{#each studios}}
                     <option value="{{this.studio_id}}">
