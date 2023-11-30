@@ -90,8 +90,74 @@ app.post('/add-user-ajax', function(req, res)
 });
 
 app.get("/animes", function(req, res){
-    return res.render('animes')
-    });
+    // Declare Query 1
+    let query1 = "SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;";
+
+    let query2 = "SELECT * FROM Studios;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields) {
+
+        let animes = rows;
+
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            let studios = rows;
+
+            return res.render('animes', {animes: animes, studios: studios});
+
+    })
+});
+
+app.post('/add-anime-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let anime_id = parseInt(data.anime_id);
+    if (isNaN(anime_id))
+    {
+        anime_id = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Animes (title, studio_id, num_episode) VALUES ('${data.title}', '${data.studio_id}', '${data.num_episode}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Studios;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 app.get("/ratings", function(req, res)
     {  

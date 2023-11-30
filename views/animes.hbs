@@ -2,7 +2,7 @@
     <header>
         <nav>
             <div class="logo"><a href="/index">CRISPYROLL</a></div>
-            <div class ="nav-links">
+            <div class="nav-links">
                 <a href="/users">Users</a>
                 <div class="highlight"><a href="/animes">Animes</a></div>
                 <a href="/studios">Studios</a>
@@ -13,91 +13,48 @@
     </header>
 
     <section>
-    <h1>ANIMES</h1>
+        <h1>ANIMES</h1>
 
 
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Studio</th>
-            <th>Number of Episodes</th>
-            <th>Delete</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Hunter x Hunter</td>
-            <td>NipponTV</td>
-            <td>148</td>
-            <td>
-                <button onclick="deleteAnime(1)">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Attack on Titan</td>
-            <td>MAPPA</td>
-            <td>88</td>
-            <td>
-                <button onclick="deleteAnime(2)">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Terror in Resonance</td>
-            <td>MAPPA</td>
-            <td>11</td>
-            <td>
-                <button onclick="deleteAnime(3)">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Jujutsu Kaisen</td>
-            <td>MAPPA</td>
-            <td>24</td>
-            <td>
-                <button onclick="deleteAnime(4)">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>The Promised Neverland</td>
-            <td>CloverWorks</td>
-            <td>12</td>
-            <td>
-                <button onclick="deleteAnime(5)">Delete</button>
-            </td>
-        </tr>
-    </table>
-    <p>&nbsp;</p>
+        <table id="animes-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    {{#each animes.[0]}}
+                    <th>{{@key}}</th>
+                    {{/each}}
+                    <th>Delete</th>
+                </tr>
+            </thead>
+        </table>
+        <p>&nbsp;</p>
 
 
-    <!--Insert-->
-    <form id="addAnime">
-        <legend><strong>Add Animes</strong></legend>
-        <fieldset class="fields">
-            <label> Title </label> <input type="text" name="title">
-            <label> Studio </label> <input type="text" name="studio">
-            <label> Number of Episodes </label> <input type="number" name="episodes">
-            <div class="btn-container">
-                <input class="btn" type="submit" id="AddAnime" value="Add an Anime">
-            </div>
-        </fieldset>
-    </form>
+        <!-- Insert using AJAX -->
+        <form id="add-anime-form-ajax">
+            <legend><strong>Add Anime</strong></legend>
+            <fieldset class="fields">
+                <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title">
+                <label> Number of Episodes </label> <input type="number" name="input-num-episode" id="input-num-episode">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="addAnime" value="Add an Anime">
+                </div>
+            </fieldset>
+        </form>
+        <script src="./js/addAnime.js"></script>
+        <p>&nbsp;</p>
 
-    <!--Update-->
-    <p>&nbsp;</p>
-    <form id="updateAnime">
-        <legend><strong>Update Anime</strong></legend>
-        <fieldset class="fields">
-            <label> Title </label> <input type="text" name="title">
-            <label> Studio </label> <input type="text" name="studio">
-            <label> Number of Episodes </label> <input type="number" name="episodes">
-            <div class="btn-container">
-                <input class="btn" type="submit" id="UpdateSaveAnime" value="Save Update Anime">
-            </div>
-        </fieldset>
-    </form>
+        <!-- Update using AJAX -->
+        <form id="update-anime-form-ajax">
+            <legend><strong>Update Anime</strong></legend>
+            <fieldset class="fields">
+                <label for="input-anime-title"> Anime Title </label> <input type="text" name="name">
+                <label for="input-num-episode"> Number of Episodes </label> <input type="text" name="input-num-episode"
+                    id="num-episode-update">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="updateAnime" value="Save Update Anime">
+                </div>
+            </fieldset>
+        </form>
+        <script src="./js/updateAnime.js"></script>
     </section>
 </body>
