@@ -243,8 +243,17 @@ app.post('/add-rating-ajax', function(req, res)
         })
     });
 
-app.get("/users_animes", function(req, res) {
-    return res.render('users_animes')
+app.get("/users_animes", function(req, res)
+    {
+        // Declare Query 1
+        let query1 = "SELECT Users_Animes.user_anime_id, Users.user_name, Animes.title FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id;";
+
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {
+
+            res.render('users_animes', {useranimes:rows}
+            );
+        })
     });
 
 app.get('/studios', function(req, res)
