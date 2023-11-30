@@ -2,7 +2,7 @@
     <header>
         <nav>
             <div class="logo"><a href="/index">CRISPYROLL</a></div>
-            <div class ="nav-links">
+            <div class="nav-links">
                 <div class="highlight"><a href="/users">Users</a></div>
                 <a href="/animes">Animes</a>
                 <a href="/studios">Studios</a>
@@ -15,79 +15,54 @@
     <section>
         <h1>USERS</h1>
 
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Honestliz</td>
-                <td>liz_re6@gmail.com</td>
-                <td>
-                    <button onclick="deleteUser(1)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Serexolik</td>
-                <td>mparker22@gmail.com</td>
-                <td>
-                    <button onclick="deleteUser(2)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Pebbles44</td>
-                <td>seanmorg@yahoo.com</td>
-                <td>
-                    <button onclick="deleteUser(3)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>PeppermintP</td>
-                <td>pmin873@gmail.com</td>
-                <td>
-                    <button onclick="deleteUser(4)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>wstr000</td>
-                <td>lilyt01@yahoo.com</td>
-                <td>
-                    <button onclick="deleteUser(5)">Delete</button>
-                </td>
-            </tr>
+        <table id="users-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    {{#each users.[0]}}
+                    <th>{{@key}}</th>
+                    {{/each}}
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr data-value={{this.user_id}}>
+                    <td>{{this.user_id}}</td>
+                    <td>{{this.user_name}}</td>
+                    <td>{{this.user_email}}</td>
+                    <td><button onclick="deleteUser({{this.user_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
         <p>&nbsp;</p>
 
-        <!--Insert-->
-        <form id="addUser">
+        <!-- Insert using AJAX -->
+        <form id="add-user-form-ajax">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
-                <label> Username </label> <input type="text" name="name">
-                <label> Email </label> <input type="text" name="population">
+                <label> User Name </label> <input type="text" name="input-user-name" id="input-user-name">
+                <label> User Email </label> <input type="number" name="input-user-email" id="input-user-email">
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUser" value="Add a User">
                 </div>
             </fieldset>
         </form>
-
-        <!--Update-->
+        <script src="./js/addUser.js"></script>
         <p>&nbsp;</p>
-        <form id="updateUser">
+
+        <!-- Update using AJAX -->
+        <form id="update-user-form-ajax">
             <legend><strong>Update User</strong></legend>
             <fieldset class="fields">
-                <label> Username </label> <input type="text" name="name">
-                <label> Email </label> <input type="text" name="population">
+                <label for="input-user-name"> Username </label> <input type="text" name="name">
+                <label for="input-user-email"> Email </label> <input type="text" name="input-user-email"
+                    id="year-founded-update">
                 <div class="btn-container">
-                    <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
+                    <input class="btn" type="submit" id="updateUser" value="Save Update User">
                 </div>
             </fieldset>
         </form>
+        <script src="./js/updateUser.js"></script>
     </section>
 </body>
