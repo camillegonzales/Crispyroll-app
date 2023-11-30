@@ -219,7 +219,7 @@ app.post('/add-anime-ajax', function(req, res)
 app.get("/ratings", function(req, res)
     {  
         // Declare Query 1
-        let query1 = "SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings INNER JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id;";
+        let query1 = "SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings INNER JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id ORDER BY rating_id ASC;";
 
         let query2 = "SELECT * FROM Users;";
 
