@@ -91,6 +91,25 @@ app.post('/add-user-ajax', function(req, res)
     })
 });
 
+app.delete('/delete-user-ajax/', function(req,res,next) {
+    let data = req.body;
+    let user_id = parseInt(data.user_id);
+    let deleteStudio = `DELETE FROM Users WHERE user_id = ${user_id}`;
+  
+  
+    // Run the 1st query
+    db.pool.query(deleteStudio, [user_id], function(error, rows, fields) {
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
 app.put('/put-user-ajax', function(req,res,next){
     let data = req.body;
     let user_name = parseInt(data.user_name);
