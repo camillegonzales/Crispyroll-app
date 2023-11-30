@@ -10,7 +10,7 @@ updateUserForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputUserName = document.getElementById("mySelect");
+    let inputUserName = document.getElementById("mySelectUser");
     let inputUserEmail = document.getElementById("user-email-update");
 
     // Get the values from the form fields

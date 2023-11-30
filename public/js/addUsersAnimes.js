@@ -10,17 +10,17 @@ addUserForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputUserName = document.getElementById("mySelect");
-    let inputTitle = document.getElementById("mySelectAnime");
+    let inputUserName = document.getElementById("mySelectUser");
+    let inputAnime = document.getElementById("mySelectAnime");
 
     // Get the values from the form fields
     let userNameValue = inputUserName.value;
-    let inputTitleValue = inputTitle.value;
+    let animeValue = inputAnime.value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        user_name: userNameValue,
-        title: inputTitleValue,
+        user_id: userNameValue,
+        anime_id: animeValue,
     }
     
     // Setup our AJAX request
@@ -37,7 +37,7 @@ addUserForm.addEventListener("submit", function (e) {
 
             // Clear the input fields for another transaction
             inputUserName.value = '';
-            inputTitle.value = '';
+            inputAnime.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -72,9 +72,9 @@ addRowToTable = (data) => {
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    userAnimeIDCell.innerText = newRow.user_id;
+    userAnimeIDCell.innerText = newRow.user_anime_id;
     userNameCell.innerText = newRow.user_name;
-    titleCell.innerText = newRow.user_email;
+    titleCell.innerText = newRow.title;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function() {
@@ -92,13 +92,4 @@ addRowToTable = (data) => {
 
     // Add the row to the table
     currentTable.appendChild(row);
-
-    // Find drop down menu, create a new option, fill data in the option (studio_name, id),
-    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
-    let selectMenu = document.getElementById("mySelect");
-    let option = document.createElement("option");
-    option.text = newRow.user_name;
-    option.value = newRow.title;
-    selectMenu.add(option);
-    // End of new step 8 code.
 }

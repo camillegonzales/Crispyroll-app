@@ -23,7 +23,7 @@ addAnimeForm.addEventListener("submit", function (e) {
     let data = {
         title: animeTitleValue,
         num_episode: numEpisodeValue,
-        studio_name: studioNameValue
+        studio_id: studioNameValue
     }
     
     // Setup our AJAX request
