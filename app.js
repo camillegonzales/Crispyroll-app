@@ -121,7 +121,7 @@ app.put('/put-user-ajax', function(req,res,next){
 
   
           // Run the 1st query
-          db.pool.query(updateUser, [user_name, user_email], function(error, rows, fields){
+          db.pool.query(updateUser, [user_email, user_name], function(error, rows, fields){
               if (error) {
   
               // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
