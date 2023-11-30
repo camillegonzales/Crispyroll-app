@@ -74,7 +74,7 @@ addRowToTable = (data) => {
     // Fill the cells with correct data
     animeIDCell.innerText = newRow.user_id;
     animeTitleCell.innerText = newRow.user_name;
-    numEpisodeCell.innerText = newRow.year_founded;
+    numEpisodeCell.innerText = newRow.num_episode;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function() {
