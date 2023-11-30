@@ -14,7 +14,8 @@ const { engine } = require('express-handlebars');
 var exphbs  = require('express-handlebars');        // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));      // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
-var db      = require('./database/db-connector')    // Database
+var db      = require('./database/db-connector');    // Database
+const { title } = require('process');
 PORT        = 4400;                                 // Set a port number at the top so it's easy to change in the future
 
 /*
@@ -215,6 +216,62 @@ app.post('/add-anime-ajax', function(req, res)
         }
     })
 });
+
+app.delete('/delete-anime-ajax/', function(req,res,next) {
+    let data = req.body;
+    let anime_id = parseInt(data.anime_id);
+    let deleteAnime = `DELETE FROM Animes WHERE anime_id = ${anime_id}`;
+  
+  
+    // Run the 1st query
+    db.pool.query(deleteAnime, [anime_id], function(error, rows, fields) {
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+app.put('/put-anime-ajax', function(req,res,next){
+    let data = req.body;
+    let user_name = parseInt(data.user_name);
+    let user_email = parseInt(data.user_email);
+
+    let updateAnime = `UPDATE Animes
+    SET title = ${title}, studio_id = ${studio_id}, num_episode = ${num_episode}
+    WHERE anime_id = ${anime_id};`;
+    let selectAnime = `SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;`;
+
+  
+          // Run the 1st query
+          db.pool.query(updateAnime, [title, studio_id, num_episode], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectAnime, [], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+              }
+  })});
 
 app.get("/ratings", function(req, res)
     {  
