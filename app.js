@@ -299,6 +299,25 @@ app.post('/add-rating-ajax', function(req, res)
         })
     });
 
+app.delete('/delete-rating-ajax/', function(req,res,next) {
+    let data = req.body;
+    let rating_id = parseInt(data.rating_id);
+    let delete_Rating = `DELETE FROM Ratings WHERE rating_id = ${rating_id}`;
+    
+    
+    // Run the 1st query
+    db.pool.query(delete_Rating, [rating_id], function(error, rows, fields) {
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
 app.get("/users_animes", function(req, res)
     {
         // Declare Query 1

@@ -79,6 +79,7 @@ addRowToTable = (data) => {
     let titleCell = document.createElement("TD");
     let ratingCell = document.createElement("TD");
     let reviewCell = document.createElement("TD");
+    let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     ratingIDCell.innerText = newRow.rating_id;
@@ -87,12 +88,22 @@ addRowToTable = (data) => {
     ratingCell.innerText = newRow.rating;
     reviewCell.innerText = newRow.review;
 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deleteRating(newRow.rating_id);
+    };
+
     // Add the cells to the row 
     row.appendChild(ratingIDCell);
     row.appendChild(userNameCell);
     row.appendChild(titleCell);
     row.appendChild(ratingCell);
     row.appendChild(reviewCell);
+    row.appendChild(deleteCell);
+
+    // Add a row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.rating_id);
     
     // Add the row to the table
     currentTable.appendChild(row);
