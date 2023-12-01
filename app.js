@@ -452,7 +452,7 @@ app.get("/users_animes", function(req, res)
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Users_Animes (user_id, anime_id) VALUES (${data.user_id}, ${data.anime_id});')`;
+    query1 = `INSERT INTO Users_Animes (user_id, anime_id) VALUES (${data.user_id}, ${data.anime_id})')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
