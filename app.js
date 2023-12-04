@@ -386,7 +386,6 @@ app.post('/put-rating', function(req,res,next)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    console.log(data);
     let rating_id = parseInt(data['rating-id-update']);
     let user_id = parseInt(data['mySelectUserID']);
     let anime_id = parseInt(data['mySelectAnimeTitle']);
