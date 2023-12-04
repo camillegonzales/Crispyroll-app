@@ -14,13 +14,14 @@
 
     <section>
         <h1>USERS</h1>
-
+        <!-- Users table -->
         <table id="users-table" border="1" cellpadding="5">
             <thead>
                 <tr>
                     {{#each users.[0]}}
                     <th>{{@key}}</th>
                     {{/each}}
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <td>{{this.user_id}}</td>
                     <td>{{this.user_name}}</td>
                     <td>{{this.user_email}}</td>
+                    <td><button><a href="/update-user?user_id={{this.user_id}}">Edit</a></button></td>
                     <td><button onclick="deleteUser({{this.user_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -38,51 +40,26 @@
         <script src="./js/deleteUser.js"></script>
         <p>&nbsp;</p>
 
-        <!-- Insert using AJAX -->
-        <form id="add-user-form-ajax">
+        <!-- Insert -->
+        <form id="add-user-form" method="POST" action="/add-user">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
-                <label> User Name </label> <input type="text" name="input-user-name" id="input-user-name">
-                <label> User Email </label> <input type="text" name="input-user-email" id="input-user-email">
+                <label> Username </label> <input type="text" name="input-user-name" id="input-user-name">
+                <label> Email </label> <input type="text" name="input-user-email" id="input-user-email">
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUser" value="Add a User">
                 </div>
             </fieldset>
         </form>
-        <script src="./js/addUser.js"></script>
-        <p>&nbsp;</p>
-
-        <!-- Update using AJAX -->
-        <form id="update-user-form-ajax">
-            <legend><strong>Update User</strong></legend>
-            <fieldset class="fields">
-                <label for="input-user-name"> Username </label>
-                <!-- Dynamic dropdown for Users -->
-                <select class="dropdown" name="input-user-name" id="mySelectUser">
-                    <option value="test">Select a User</option>
-                    {{#each users}}
-                    <option value="{{this.user_id}}">
-                        {{this.user_name}}
-                    </option>
-                    {{/each}}
-                </select>
-                <label for="input-user-email"> Email </label> <input type="text" name="input-user-email"
-                    id="user-email-update">
-                <div class="btn-container">
-                    <input class="btn" type="submit" id="updateUser" value="Save Update User">
-                </div>
-            </fieldset>
-        </form>
-        <script src="./js/updateUser.js"></script>
         <p>&nbsp;</p>
 
         <!-- Assign user to anime using AJAX -->
-        <form id="add-users-animes-form-ajax">
+        <form id="add-user-anime-form" method="POST" action="/add-user-anime">
             <legend><strong>Assign Anime to User</strong></legend>
             <fieldset class="fields">
                 <label for="input-user-name"> Username </label>
                 <!-- Dynamic dropdown for Users -->
-                <select class="dropdown" name="input-user-name" id="mySelectUser">
+                <select class="dropdown" name="mySelectUser" id="mySelectUser">
                     <option value="test">Select a User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">
@@ -91,7 +68,7 @@
                     {{/each}}
                 </select>
                 <label for="input-anime"> Anime </label>
-                <select class="dropdown" name="input-anime" id="mySelectAnime">
+                <select class="dropdown" name="mySelectAnime" id="mySelectAnime">
                     <option value="test">Select an Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">
@@ -104,6 +81,5 @@
                 </div>
             </fieldset>
         </form>
-        <script src="./js/addUsersAnimes.js"></script>
     </section>
 </body>

@@ -21,6 +21,7 @@
                     {{#each animes.[0]}}
                     <th>{{@key}}</th>
                     {{/each}}
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -31,6 +32,7 @@
                     <td>{{this.title}}</td>
                     <td>{{this.studio_name}}</td>
                     <td>{{this.num_episode}}</td>
+                    <td><button><a href="/update-anime?anime_id={{this.anime_id}}">Edit</a></button></td>
                     <td><button onclick="deleteAnime({{this.anime_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -40,13 +42,13 @@
         <p>&nbsp;</p>
 
 
-        <!-- Insert using AJAX -->
-        <form id="add-anime-form-ajax">
+        <!-- Insert -->
+        <form id="add-anime-form" method="POST" action="/add-anime">
             <legend><strong>Add Anime</strong></legend>
             <fieldset class="fields">
                 <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title">
                 <label> Studio Name </label>
-                <select class="dropdown" name="input-studio-name" id="mySelectStudio">
+                <select class="dropdown" name="mySelectStudio" id="mySelectStudio">
                     <option value="test">Select a Studio</option>
                     {{#each studios}}
                     <option value="{{this.studio_id}}">
@@ -60,27 +62,6 @@
                 </div>
             </fieldset>
         </form>
-        <script src="./js/addAnime.js"></script>
-        <p>&nbsp;</p>
 
-        <!-- Update using AJAX -->
-        <form id="update-anime-form-ajax">
-            <legend><strong>Update Anime</strong></legend>
-            <fieldset class="fields">
-                <label> Anime Title </label> 
-                <select class="dropdown" name="input-title" id="mySelectAnime">
-                    <option value="">Select Anime</option>
-                    {{#each animes}}
-                    <option value="{{this.anime_id}}">{{this.title}}</option>
-                    {{/each}}
-                </select>
-                <label for="input-num-episode"> Number of Episodes </label> <input type="text" name="input-num-episode"
-                    id="num-episode-update">
-                <div class="btn-container">
-                    <input class="btn" type="submit" id="updateAnime" value="Save Update Anime">
-                </div>
-            </fieldset>
-        </form>
-        <script src="./js/updateAnime.js"></script>
     </section>
 </body>

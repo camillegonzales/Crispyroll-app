@@ -23,6 +23,7 @@
                     {{#each studios.[0]}}
                     <th>{{@key}}</th>
                     {{/each}}
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <td>{{this.studio_id}}</td>
                     <td>{{this.studio_name}}</td>
                     <td>{{this.year_founded}}</td>
+                    <td><button><a href="/update-studio?studio_id={{this.studio_id}}">Edit</a></button></td>
                     <td><button onclick="deleteStudio({{this.studio_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -40,8 +42,8 @@
         <script src="./js/deleteStudio.js"></script>
         <p>&nbsp;</p>
 
-        <!-- Insert using AJAX -->
-        <form id="add-studio-form-ajax">
+        <!-- Insert -->
+        <form id="add-studio-form" method="POST" action="/add-studio">
             <legend><strong>Add Studios</strong></legend>
             <fieldset class="fields">
                 <label> Studio Name </label> <input type="text" name="input-studio-name" id="input-studio-name">
@@ -51,31 +53,6 @@
                 </div>
             </fieldset>
         </form>
-        <script src="./js/addStudio.js"></script>
         <p>&nbsp;</p>
-
-        <!-- Update using AJAX -->
-            <form id="update-studio-form-ajax">
-                <legend><strong>Update Studio</strong></legend>
-                <fieldset class="fields">
-                    <label for="input-studio-name"> Studio Name </label>
-                    <!-- Dynamic dropdown for Studios -->
-                    <select class="dropdown" name="input-studio-name" id="mySelectStudio">
-                        <option value="test">Select a Studio</option>
-                        {{#each studios}}
-                        <option value="{{this.studio_id}}">
-                            {{this.studio_name}}
-                        </option>
-                        {{/each}}
-                    </select>
-                    <label for="input_year_founded"> Year Founded </label> <input type="number"
-                        name="input_year_founded" id="year-founded-update">
-                    <div class="btn-container">
-                        <input class="btn" type="submit" id="updateStudio" value="Save Update Studio">
-                    </div>
-                </fieldset>
-            </form>
-            <script src="./js/updateStudio.js"></script>
-
     </section>
 </body>
