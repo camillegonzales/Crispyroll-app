@@ -167,20 +167,16 @@ app.get("/animes", function(req, res){
 })
 });
 
-app.post('/add-anime-ajax', function(req, res) 
+app.post('/add-anime', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-
-    // Capture NULL values
-    let anime_id = parseInt(data.anime_id);
-    if (isNaN(anime_id))
-    {
-        anime_id = 'NULL'
-    }
+    let title = data['input-anime-title'];
+    let studio_id = parseInt(data['mySelectStudio'])
+    let num_episode = parseInt(data['input-num-episode'])
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Animes (title, studio_id, num_episode) VALUES ('${data.title}', '${data.studio_id}', '${data.num_episode}')`;
+    query1 = `INSERT INTO Animes (title, studio_id, num_episode) VALUES ('${title}', '${studio_id}', '${num_episode}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
@@ -195,23 +191,7 @@ app.post('/add-anime-ajax', function(req, res)
         // presents it on the screen
         else
         {
-            // If there was no error, perform a SELECT * on Animes
-            query2 = `SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
+            res.redirect('/animes')
         }
     })
 });
@@ -235,42 +215,58 @@ app.delete('/delete-anime-ajax/', function(req,res,next) {
     })
 });
 
-app.put('/put-anime-ajax', function(req,res,next){
+app.get('/update-anime', function(req, res)
+    {  
+        let anime_id = req.query.anime_id;
+
+        // Declare Query 1
+        let query1 = `SELECT * FROM Animes WHERE anime_id = ${anime_id};`;
+        let query2 = `SELECT * FROM Studios;`;
+
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {
+
+            let data = rows[0]
+
+            db.pool.query(query2, function(error, rows, fields) {
+
+                let studios = rows;
+
+                res.render('update-anime', {data:data, studios:studios}
+            );
+        })})
+    });                                                                               
+
+
+app.post('/put-anime', function(req,res,next)
+{
+    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    let user_name = parseInt(data.user_name);
-    let user_email = parseInt(data.user_email);
+    let title = data['anime-title-update'];
+    let studio_id = parseInt(data['mySelectStudio']);
+    let num_episode = parseInt(data['num-episode-update']);
+    let anime_id = parseInt(data['anime-id-update']);
 
-    let updateAnime = `UPDATE Animes
-    SET title = ${title}, studio_id = ${studio_id}, num_episode = ${num_episode}
-    WHERE anime_id = ${anime_id};`;
-    let selectAnime = `SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;`;
+    // Create the query and run it on the database
+    query1 = `UPDATE Animes SET title = ${'title'}, studio_id = ${studio_id}, num_episode = ${num_episode} WHERE anime_id = ${anime_id};`;
+    db.pool.query(query1, function(error, rows, fields) {
 
-  
-          // Run the 1st query
-          db.pool.query(updateAnime, [title, studio_id, num_episode], function(error, rows, fields){
-              if (error) {
-  
-              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-              console.log(error);
-              res.sendStatus(400);
-              }
-  
-              // If there was no error, we run our second query and return that data so we can use it to update the people's
-              // table on the front-end
-              else
-              {
-                  // Run the second query
-                  db.pool.query(selectAnime, [], function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
 
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.send(rows);
-                    }
-                })
-              }
-  })});
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/animes');
+        }
+    })
+});
 
 app.get("/ratings", function(req, res)
     {  
