@@ -14,13 +14,14 @@
 
     <section>
         <h1>USERS</h1>
-
+        <!-- Users table -->
         <table id="users-table" border="1" cellpadding="5">
             <thead>
                 <tr>
                     {{#each users.[0]}}
                     <th>{{@key}}</th>
                     {{/each}}
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <td>{{this.user_id}}</td>
                     <td>{{this.user_name}}</td>
                     <td>{{this.user_email}}</td>
+                    <td><button><a href="/update-user?user_id={{this.user_id}}">Edit</a></button></td>
                     <td><button onclick="deleteUser({{this.user_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -49,30 +51,6 @@
                 </div>
             </fieldset>
         </form>
-        <p>&nbsp;</p>
-
-        <!-- Update using AJAX -->
-        <form id="update-user-form-ajax">
-            <legend><strong>Update User</strong></legend>
-            <fieldset class="fields">
-                <label for="input-user-name"> Username </label>
-                <!-- Dynamic dropdown for Users -->
-                <select class="dropdown" name="input-user-name" id="mySelectUser">
-                    <option value="test">Select a User</option>
-                    {{#each users}}
-                    <option value="{{this.user_id}}">
-                        {{this.user_name}}
-                    </option>
-                    {{/each}}
-                </select>
-                <label for="input-user-email"> Email </label> <input type="text" name="input-user-email"
-                    id="user-email-update">
-                <div class="btn-container">
-                    <input class="btn" type="submit" id="updateUser" value="Save Update User">
-                </div>
-            </fieldset>
-        </form>
-        <script src="./js/updateUser.js"></script>
         <p>&nbsp;</p>
 
         <!-- Assign user to anime using AJAX -->

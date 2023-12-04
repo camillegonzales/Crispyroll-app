@@ -101,40 +101,49 @@ app.delete('/delete-user-ajax/', function(req,res,next) {
     })
 });
 
-app.put('/put-user-ajax', function(req,res,next){
-    let data = req.body;
-    let user_name = parseInt(data.user_name);
-    let user_email = parseInt(data.user_email);
+  app.get('/update-user', function(req, res)
+  {  
+      let user_id = req.query.user_id;
 
-    let updateUser = `UPDATE Users SET user_email = ${user_email} WHERE user_id = ${user_name}`;
-    let selectUser = `SELECT * FROM Users WHERE user_id = ${user_name}`;
+      // Declare Query 1
+      let query1 = `SELECT * FROM Users WHERE user_id = ${user_id};`;
 
-  
-          // Run the 1st query
-          db.pool.query(updateUser, [user_email, user_name], function(error, rows, fields){
-              if (error) {
-  
-              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-              console.log(error);
-              res.sendStatus(400);
-              }
-  
-              // If there was no error, we run our second query and return that data so we can use it to update the people's
-              // table on the front-end
-              else
-              {
-                  // Run the second query
-                  db.pool.query(selectUser, [user_name], function(error, rows, fields) {
+      // Run the 1st query
+      db.pool.query(query1, function(error, rows, fields) {
 
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.send(rows);
-                    }
-                })
-              }
-  })});
+          res.render('update-user', {data:rows[0]}
+          );
+      })
+  });                                                                               
+
+
+app.post('/put-user', function(req,res,next)
+{
+  // Capture the incoming data and parse it back to a JS object
+  let data = req.body;
+  let user_id = parseInt(data['user-id-update'])
+  let user_email = data['user-email-update']
+
+  // Create the query and run it on the database
+  query1 = `UPDATE Users SET user_email = ? WHERE user_id = ?;`;
+  db.pool.query(query1, [user_email, user_id], function(error, rows, fields) {
+
+      // Check to see if there was an error
+      if (error) {
+
+          // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+          console.log(error)
+          res.sendStatus(400);
+      }
+
+      // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+      // presents it on the screen
+      else
+      {
+          res.redirect('/users');
+      }
+  })
+});
 
 app.get("/animes", function(req, res){
     // Declare Query 1

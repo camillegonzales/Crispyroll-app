@@ -1,0 +1,33 @@
+<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/index">CRISPYROLL</a></div>
+            <div class="nav-links">
+                <div class="highlight"><a href="/users">Users</a></div>
+                <a href="/animes">Animes</a>
+                <a href="/studios">Studios</a>
+                <a href="/ratings">Ratings</a>
+                <a href="/users_animes">Users/Animes</a>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h1>USERS</h1>
+
+        <!-- Update user -->
+            <form id="update-user-form" method="POST" action="/put-user">
+            <legend><strong>Update User</strong></legend>
+            <fieldset class="fields">
+                <label for="user-id"> Username </label> <input type="text" name="user-id-update" id="user-id-update" value="{{data.user_id}}" readonly>
+                <label for="user-name-update"> Studio Name </label> <input type="text" name="user-name-update" id="user-name-update" value="{{data.user_name}}" readonly>
+                <label for="input-user-email"> Email </label> <input type="text" name="user-email-update"id="user-email-update" value="{{data.user_email}}">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="updateUser" value="Save Update User">
+                </div>
+            </fieldset>
+        </form>
+    </section>
+</body>
