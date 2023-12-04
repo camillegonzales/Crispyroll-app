@@ -131,6 +131,11 @@ form {
     align-items: center;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 fieldset {
     border: 1px solid #9214b827;
     padding: 1%;
