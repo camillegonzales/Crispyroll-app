@@ -56,20 +56,13 @@ app.get("/users", function(req, res){
 })})
 });
 
-app.post('/add-user-ajax', function(req, res) 
+app.post('/add-user', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // Capture NULL values
-    let user_id = parseInt(data.user_id);
-    if (isNaN(user_id))
-    {
-        user_id = 'NULL'
-    }
-
     // Create the query and run it on the database
-    query1 = `INSERT INTO Users (user_name, user_email) VALUES ('${data.user_name}', '${data.user_email}')`;
+    query1 = `INSERT INTO Users (user_name, user_email) VALUES ('${data['input-user-name']}', '${data['input-user-email']}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
@@ -84,23 +77,7 @@ app.post('/add-user-ajax', function(req, res)
         // presents it on the screen
         else
         {
-            // If there was no error, perform a SELECT * on Users
-            query2 = `SELECT * FROM Users;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
+            res.redirect('/users');
         }
     })
 });

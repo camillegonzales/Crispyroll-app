@@ -38,18 +38,17 @@
         <script src="./js/deleteUser.js"></script>
         <p>&nbsp;</p>
 
-        <!-- Insert using AJAX -->
-        <form id="add-user-form-ajax">
+        <!-- Insert -->
+        <form id="add-user-form" method="POST" action="/add-user">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
-                <label> User Name </label> <input type="text" name="input-user-name" id="input-user-name">
-                <label> User Email </label> <input type="text" name="input-user-email" id="input-user-email">
+                <label> Username </label> <input type="text" name="input-user-name" id="input-user-name">
+                <label> Email </label> <input type="text" name="input-user-email" id="input-user-email">
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUser" value="Add a User">
                 </div>
             </fieldset>
         </form>
-        <script src="./js/addUser.js"></script>
         <p>&nbsp;</p>
 
         <!-- Update using AJAX -->
