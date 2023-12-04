@@ -351,43 +351,67 @@ app.delete('/delete-rating-ajax/', function(req,res,next) {
     })
 });
 
-app.put('/put-rating-ajax', function(req,res,next){
+app.get('/update-rating', function(req, res)
+{  
+    let rating_id = req.query.rating_id;
+
+    let query1 = `SELECT * FROM Ratings WHERE rating_id = ${rating_id};`;
+    let query2 = `SELECT * FROM Users;`;
+    let query3 = `SELECT * FROM Animes;`;
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields) {
+
+        let ratings = rows[0];
+
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+        
+            let users = rows;
+
+            // Run 3rd query
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let animes = rows;
+
+                return res.render('update-rating', {ratings: ratings, users: users, animes: animes});
+            })
+            
+        })
+    })
+});                                                         
+
+
+app.post('/put-rating', function(req,res,next)
+{
+    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    let rating_id = parseInt(data.rating_id);
-    let user_name = parseInt(data.user_name);
-    let title = parseInt(data.title);
-    let rating = data.rating;
-    let review = data.review;
+    console.log(data);
+    let rating_id = parseInt(data['rating-id-update']);
+    let user_id = parseInt(data['mySelectUserID']);
+    let anime_id = parseInt(data['mySelectAnimeTitle']);
+    let rating = parseInt(data['rating-update']);
+    let review = data['review-update'];
 
-    let updateRating = `UPDATE Ratings SET user_id = ${user_name}, anime_id = ${title}, rating = ${rating}, review = ${review} WHERE rating_id = ${rating_id};`;
-    let selectRating = `SELECT * FROM Ratings WHERE rating_id = ${rating_id};`;
-    
-  
-          // Run the 1st query
-          db.pool.query(updateRating, [rating_id, user_name, title, rating, review], function(error, rows, fields){
-              if (error) {
-  
-              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-              console.log(error);
-              res.sendStatus(400);
-              }
-  
-              // If there was no error, we run our second query and return that data so we can use it to update the people's
-              // table on the front-end
-              else
-              {
-                  // Run the second query
-                  db.pool.query(selectRating, [rating_id], function(error, rows, fields) {
+    let updateRating = `UPDATE Ratings SET user_id = ${user_id}, anime_id = ${anime_id}, rating = ${rating}, review = '${review}' WHERE rating_id = ${rating_id};`;
+    db.pool.query(updateRating, function(error, rows, fields) {
 
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.send(rows);
-                    }
-                })
-              }
-  })});
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/ratings');
+        }
+    }) 
+});
 
 app.get("/users_animes", function(req, res)
     {

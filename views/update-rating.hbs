@@ -1,0 +1,46 @@
+<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/index">CRISPYROLL</a></div>
+            <div class="nav-links">
+                <a href="/users">Users</a>
+                <a href="/animes">Animes</a>
+                <a href="/studios">Studios</a>
+                <div class="highlight"><a href="/ratings">Ratings</a></div>
+                <a href="/users_animes">Users/Animes</a>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h1>Rating</h1>
+        <!-- Update rating -->
+        <form id="update-rating-form" method="POST" action="/put-rating">
+            <legend><strong>Update Rating</strong></legend>
+            <fieldset class="fields">
+                <label> Rating ID </label> <input type="number" name="rating-id-update" id="rating-id-update" value="{{ratings.rating_id}}" readonly>
+                <label> User </label>
+                <select name="mySelectUserID" id="mySelectUserID">
+                    <option value="">Select User</option>
+                    {{#each users}}
+                    <option value="{{this.user_id}}">{{this.user_name}}</option>
+                    {{/each}}
+                </select>
+                <label> Anime </label>
+                <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
+                    <option value="">Select Anime</option>
+                    {{#each animes}}
+                    <option value="{{this.anime_id}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
+                <label> Rating </label> <input type="number" name="rating-update" id="rating-update" placeholder="1-5" min="1" max="5" value="{{ratings.rating}}">
+                <label> Review </label> <input type="text" name="review-update" id="review-update" value="{{ratings.review}}">
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
+                </div>
+            </fieldset>
+        </form>
+    </section>
+</body>
