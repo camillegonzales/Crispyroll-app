@@ -524,7 +524,7 @@ app.delete('/delete-studio-ajax/', function(req,res,next) {
     })
 });
 
-app.get('/update-studios', function(req, res)
+app.get('/update-studio', function(req, res)
     {  
         let studio_id = req.query.studio_id;
 
@@ -534,7 +534,7 @@ app.get('/update-studios', function(req, res)
         // Run the 1st query
         db.pool.query(query1, function(error, rows, fields) {
 
-            res.render('update-studios', {data:rows[0]}
+            res.render('update-studio', {data:rows[0]}
             );
         })
     });                                                                               
