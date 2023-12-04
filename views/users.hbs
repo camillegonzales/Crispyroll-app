@@ -54,12 +54,12 @@
         <p>&nbsp;</p>
 
         <!-- Assign user to anime using AJAX -->
-        <form id="add-users-animes-form-ajax">
+        <form id="add-user-anime-form" method="POST" action="/add-user-anime">
             <legend><strong>Assign Anime to User</strong></legend>
             <fieldset class="fields">
                 <label for="input-user-name"> Username </label>
                 <!-- Dynamic dropdown for Users -->
-                <select class="dropdown" name="input-user-name" id="mySelectUser">
+                <select class="dropdown" name="mySelectUser" id="mySelectUser">
                     <option value="test">Select a User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">
@@ -68,7 +68,7 @@
                     {{/each}}
                 </select>
                 <label for="input-anime"> Anime </label>
-                <select class="dropdown" name="input-anime" id="mySelectAnime">
+                <select class="dropdown" name="mySelectAnime" id="mySelectAnime">
                     <option value="test">Select an Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">
@@ -81,6 +81,5 @@
                 </div>
             </fieldset>
         </form>
-        <script src="./js/addUsersAnimes.js"></script>
     </section>
 </body>

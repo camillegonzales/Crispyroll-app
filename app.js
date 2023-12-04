@@ -121,8 +121,8 @@ app.post('/put-user', function(req,res,next)
 {
   // Capture the incoming data and parse it back to a JS object
   let data = req.body;
-  let user_id = parseInt(data['user-id-update'])
-  let user_email = data['user-email-update']
+  let user_id = parseInt(data['user-id-update']);
+  let user_email = data['user-email-update'];
 
   // Create the query and run it on the database
   query1 = `UPDATE Users SET user_email = ? WHERE user_id = ?;`;
@@ -425,21 +425,16 @@ app.get("/users_animes", function(req, res)
         })
     });
 
-    app.post('/add-users-animes-ajax', function(req, res) 
+    app.post('/add-user-anime', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-
-    // Capture NULL values
-    let user_id = parseInt(data.user_id);
-    if (isNaN(user_id))
-    {
-        user_id = 'NULL'
-    }
+    let user_id = parseInt(data['mySelectUser'])
+    let anime_id = parseInt(data['mySelectAnime'])
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Users_Animes (user_id, anime_id) VALUES (${data.user_id}, ${data.anime_id})')`;
-    db.pool.query(query1, function(error, rows, fields) {
+    query1 = `INSERT INTO Users_Animes (user_id, anime_id) VALUES (${user_id}, ${anime_id});`;
+    db.pool.query(query1, [user_id, anime_id], function(error, rows, fields) {
 
         // Check to see if there was an error
         if (error) {
@@ -453,23 +448,7 @@ app.get("/users_animes", function(req, res)
         // presents it on the screen
         else
         {
-            // If there was no error, perform a SELECT * on Users
-            query2 = `SELECT Users_Animes.user_anime_id, Users.user_name, Animes.title FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
+            res.redirect('/users_animes')
         }
     })
 });
