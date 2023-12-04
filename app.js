@@ -502,20 +502,13 @@ app.get('/studios', function(req, res)
     });                                                                               
 
 
-app.post('/add-studio-ajax', function(req, res) 
+app.post('/add-studio', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // Capture NULL values
-    let studio_id = parseInt(data.studio_id);
-    if (isNaN(studio_id))
-    {
-        studio_id = 'NULL'
-    }
-
     // Create the query and run it on the database
-    query1 = `INSERT INTO Studios (studio_name, year_founded) VALUES ('${data.studio_name}', '${data.year_founded}')`;
+    query1 = `INSERT INTO Studios (studio_name, year_founded) VALUES ('${data['input-studio-name']}', '${data['input-year-founded']}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
@@ -530,23 +523,7 @@ app.post('/add-studio-ajax', function(req, res)
         // presents it on the screen
         else
         {
-            // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM Studios;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
+            res.redirect('/studios');
         }
     })
 });
