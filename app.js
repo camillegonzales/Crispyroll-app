@@ -172,8 +172,8 @@ app.post('/add-anime', function(req, res)
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
     let title = data['input-anime-title'];
-    let studio_id = parseInt(data['mySelectStudio'])
-    let num_episode = parseInt(data['input-num-episode'])
+    let studio_id = parseInt(data['mySelectStudio']);
+    let num_episode = parseInt(data['input-num-episode']);
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Animes (title, studio_id, num_episode) VALUES ('${title}', '${studio_id}', '${num_episode}')`;
@@ -299,26 +299,23 @@ app.get("/ratings", function(req, res)
         })
     }); 
 
-app.post('/add-rating-ajax', function(req, res) 
+app.post('/add-rating', function(req, res) 
     {
         // Capture the incoming data and parse it back to a JS object
         let data = req.body;
+        let user_id = parseInt(data['mySelectUserName']);
+        let anime_id = parseInt(data['mySelectAnimeTitle']);
+        let rating = parseInt(data['input-rating']);
+        let review = data['input-review'];
 
         // Capture NULL values
-        let rating_id = parseInt(data.rating_id);
-        if (isNaN(rating_id))
+        if (isNaN(user_id))
         {
-            rating_id = 'NULL'
-        }
-
-        let user_name = parseInt(data.user_name);
-        if (isNaN(user_name))
-        {
-            user_name = 'NULL'
-        }
+            user_id = 'NULL'
+        };
 
         // Create the query and run it on the database
-        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES ('${data.user_name}', '${data.title}', '${data.rating}', '${data.review}');`;
+        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES ('${user_id}', '${anime_id}', '${rating}', '${review}');`;
         db.pool.query(query1, function(error, rows, fields){
 
             // Check to see if there was an error
@@ -330,23 +327,7 @@ app.post('/add-rating-ajax', function(req, res)
             }
             else
             {
-                // If there was no error, perform a SELECT * on bsg_people
-                query2 = `SELECT * FROM Ratings;`;
-                db.pool.query(query2, function(error, rows, fields){
-
-                    // If there was an error on the second query, send a 400
-                    if (error) {
-                        
-                        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                        console.log(error);
-                        res.sendStatus(400);
-                    }
-                    // If all went well, send the results of the query back.
-                    else
-                    {
-                        res.send(rows);
-                    }
-                })
+                res.redirect('/ratings')
             }
         })
     });

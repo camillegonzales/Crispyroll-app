@@ -43,25 +43,25 @@
         <p>&nbsp;</p>
 
         <!--Insert-->
-        <form id="add-rating-form-ajax">
+        <form id="add-rating-form" method="POST" action="/add-rating">
             <legend><strong>Add Rating</strong></legend>
             <fieldset class="fields">
                 <label> User </label>
-                <select name="input-user-name" id="input-user-name">
+                <select name="mySelectUserName" id="mySelectUserName">
                     <option value="">Select User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
                     {{/each}}
                 </select>
                 <label> Anime </label>
-                <select name="input-title" id="input-title">
+                <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
                     <option value="">Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
-                <label> Rating </label> <input type="number" name="rating" id="input-rating">
-                <label> Review </label> <input type="text" name="review" id="input-review">
+                <label> Rating </label> <input type="number" name="input-rating" id="input-rating" placeholder="1-5" min="1" max="5">
+                <label> Review </label> <input type="text" name="input-review" id="input-review">
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addRating" value="Add a Rating">
                 </div>
