@@ -547,40 +547,49 @@ app.delete('/delete-studio-ajax/', function(req,res,next) {
     })
 });
 
-app.put('/put-studio-ajax', function(req,res,next){
+app.get('/update-studios', function(req, res)
+    {  
+        let studio_id = req.query.studio_id;
+
+        // Declare Query 1
+        let query1 = `SELECT * FROM Studios WHERE studio_id = ${studio_id};`;
+
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {
+
+            res.render('update-studios', {data:rows[0]}
+            );
+        })
+    });                                                                               
+
+
+app.post('/put-studio', function(req,res,next)
+{
+    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    let studio_name = parseInt(data.studio_name);
-    let year_founded = parseInt(data.year_founded);
+    let studio_id = parseInt(data['studio-id-update'])
+    let year_founded = parseInt(data['year-founded-update'])
 
-    let updateStudio = `UPDATE Studios SET year_founded = ${year_founded} WHERE studio_id = ${studio_name}`;
-    let selectStudio = `SELECT * FROM Studios WHERE studio_id = ${studio_name}`;
+    // Create the query and run it on the database
+    query1 = `UPDATE Studios SET year_founded = ${year_founded} WHERE studio_id = ${studio_id};`;
+    db.pool.query(query1, function(error, rows, fields) {
 
-  
-          // Run the 1st query
-          db.pool.query(updateStudio, [studio_name, year_founded], function(error, rows, fields){
-              if (error) {
-  
-              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-              console.log(error);
-              res.sendStatus(400);
-              }
-  
-              // If there was no error, we run our second query and return that data so we can use it to update the people's
-              // table on the front-end
-              else
-              {
-                  // Run the second query
-                  db.pool.query(selectStudio, [studio_name], function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
 
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.send(rows);
-                    }
-                })
-              }
-  })});
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/studios');
+        }
+    })
+});
 
 /*
     LISTENER

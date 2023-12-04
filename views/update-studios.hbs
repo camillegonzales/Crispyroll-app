@@ -1,0 +1,34 @@
+<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/index">CRISPYROLL</a></div>
+            <div class="nav-links">
+                <a href="/users">Users</a>
+                <a href="/animes">Animes</a>
+                <div class="highlight"><a href="/studios">Studios</a></div>
+                <a href="/ratings">Ratings</a>
+                <a href="/users_animes">Users/Animes</a>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h1>STUDIOS</h1>
+
+        <!-- Update -->
+            <form id="update-studio-form" method="POST" action="/put-studio">
+                <legend><strong>Update Studio</strong></legend>
+                <fieldset class="fields">
+                    <label for="studio-id"> Studio ID </label> <input type="text" name="studio-id-update" id="studio-id-update" value="{{data.studio_id}}" readonly>
+                    <label for="input-studio-name"> Studio Name </label> <input type="text" name="studio-name-update" id="studio-name-update" value="{{data.studio_name}}" readonly>
+                    <label for="input_year_founded"> Year Founded </label> <input type="number"
+                        name="year-founded-update" id="year-founded-update" value="{{data.year_founded}}">
+                    <div class="btn-container">
+                        <input class="btn" type="submit" id="updateStudio" value="Save Update Studio">
+                    </div>
+                </fieldset>
+            </form>
+    </section>
+</body>
