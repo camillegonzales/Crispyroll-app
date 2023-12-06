@@ -271,7 +271,7 @@ app.post('/put-anime', function(req,res,next)
 app.get("/ratings", function(req, res)
     {  
         // Declare Query 1
-        let query1 = "SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings INNER JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id ORDER BY rating_id ASC;";
+        let query1 = "SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings LEFT JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id ORDER BY rating_id ASC;";
 
         let query2 = "SELECT * FROM Users;";
 
@@ -315,7 +315,7 @@ app.post('/add-rating', function(req, res)
         };
 
         // Create the query and run it on the database
-        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES ('${user_id}', '${anime_id}', '${rating}', '${review}');`;
+        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES (${user_id}, ${anime_id}, ${rating}, '${review}');`;
         db.pool.query(query1, function(error, rows, fields){
 
             // Check to see if there was an error
@@ -391,6 +391,12 @@ app.post('/put-rating', function(req,res,next)
     let anime_id = parseInt(data['mySelectAnimeTitle']);
     let rating = parseInt(data['rating-update']);
     let review = data['review-update'];
+
+    // Capture NULL values
+    if (isNaN(user_id))
+    {
+        user_id = 'NULL'
+    };
 
     let updateRating = `UPDATE Ratings SET user_id = ${user_id}, anime_id = ${anime_id}, rating = ${rating}, review = '${review}' WHERE rating_id = ${rating_id};`;
     db.pool.query(updateRating, function(error, rows, fields) {
