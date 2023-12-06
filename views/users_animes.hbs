@@ -38,11 +38,11 @@
                     <td>{{this.user_anime_id}}</td>
                     <td>{{this.user_name}}</td>
                     <td>{{this.title}}</td>
-                    <td><button onclick="deleteStudio({{this.user_anime_id}})">Delete</button></td>
+                    <td><button onclick="deleteUserAnime({{this.user_anime_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
-
+        <script src="./js/deleteUserAnime.js"></script>
     </section>
 </body>

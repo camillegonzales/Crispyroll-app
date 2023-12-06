@@ -459,6 +459,25 @@ app.get("/users_animes", function(req, res)
     })
 });
 
+app.delete('/delete-user-anime-ajax/', function(req,res,next) {
+    let data = req.body;
+    let user_anime_id = parseInt(data.user_anime_id);
+    let delete_UserAnime = `DELETE FROM Users_Animes WHERE user_anime_id = ${user_anime_id}`;
+    
+    
+    // Run the 1st query
+    db.pool.query(delete_UserAnime, [user_anime_id], function(error, rows, fields) {
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
 app.get('/studios', function(req, res)
     {  
         // Declare Query 1
