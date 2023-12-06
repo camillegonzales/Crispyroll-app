@@ -23,14 +23,15 @@
                 <label> Rating ID </label> <input type="number" name="rating-id-update" id="rating-id-update" value="{{ratings.rating_id}}" readonly>
                 <label> User </label>
                 <select name="mySelectUserID" id="mySelectUserID">
-                    <option value="">Select User</option>
+                    <option disabled selected>Select User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
                     {{/each}}
+                    <option value="">-- none --</option>
                 </select>
                 <label> Anime </label>
                 <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
-                    <option value="">Select Anime</option>
+                    <option disabled selected>Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
