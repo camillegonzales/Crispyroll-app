@@ -1,7 +1,7 @@
 //Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // code for deletePerson using regular javascript/xhttp
-function deleteUser(user_anime_id) {
+function deleteUserAnime(user_anime_id) {
     // Put our data we want to send in a javascript object
     let data = {
       user_anime_id: user_anime_id
