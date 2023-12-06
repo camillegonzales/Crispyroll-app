@@ -1,27 +1,30 @@
+// Delete Rating JS Function
+
+/*  
+  Citation for the following table and form: 
+    Date: 11/29/2023
+    Based on the CS340 starter code for dynamically deleting data
+    Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+*/
+
+// AJAX to delete rating dynamically from table
 function deleteRating(rating_id) {
-    // Put our data we want to send in a javascript object
     let data = {
         rating_id: rating_id
     };
 
-    // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("DELETE", "/delete-rating-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
-    // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 204) {
-
-            // Add the new data to the table
             deleteRow(rating_id);
-
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
         }
     }
-    // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 }
 
@@ -30,11 +33,9 @@ function deleteRow(rating_id){
 
     let table = document.getElementById("ratings-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
-       //iterate through rows
-       //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == rating_id) {
+        if (table.rows[i].getAttribute("data-value") == rating_id) {
             table.deleteRow(i);
             break;
-       }
+        }
     }
 }
