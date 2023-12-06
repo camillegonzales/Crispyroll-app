@@ -315,7 +315,7 @@ app.post('/add-rating', function(req, res)
         };
 
         // Create the query and run it on the database
-        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES ('${user_id}', '${anime_id}', '${rating}', '${review}');`;
+        query1 = `INSERT INTO Ratings (user_id, anime_id, rating, review) VALUES (${user_id}, ${anime_id}, ${rating}, '${review}');`;
         db.pool.query(query1, function(error, rows, fields){
 
             // Check to see if there was an error
@@ -391,6 +391,12 @@ app.post('/put-rating', function(req,res,next)
     let anime_id = parseInt(data['mySelectAnimeTitle']);
     let rating = parseInt(data['rating-update']);
     let review = data['review-update'];
+
+    // Capture NULL values
+    if (isNaN(user_id))
+    {
+        user_id = 'NULL'
+    };
 
     let updateRating = `UPDATE Ratings SET user_id = ${user_id}, anime_id = ${anime_id}, rating = ${rating}, review = '${review}' WHERE rating_id = ${rating_id};`;
     db.pool.query(updateRating, function(error, rows, fields) {
