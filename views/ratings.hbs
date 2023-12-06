@@ -50,14 +50,15 @@
             <fieldset class="fields">
                 <label> User </label>
                 <select name="mySelectUserName" id="mySelectUserName">
-                    <option>Select User</option>
+                    <option disabled selected>Select User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
                     {{/each}}
+                    <option value="">-- none --</option>
                 </select>
                 <label> Anime </label>
                 <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
-                    <option value="">Select Anime</option>
+                    <option disabled selected>Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
