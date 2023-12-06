@@ -1,3 +1,10 @@
+<!-- Users Page --> 
+
+<!-- Citation for the following table and form: 
+        Date: 11/16/2023
+        Based on the CS340 starter code for displaying and adding data
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
 <body>
     <header>
         <nav>
@@ -14,6 +21,7 @@
 
     <section>
         <h1>USERS</h1>
+
         <!-- Users table -->
         <table id="users-table" border="1" cellpadding="5">
             <thead>
@@ -38,26 +46,26 @@
             </tbody>
         </table>
         <script src="./js/deleteUser.js"></script>
-        <p>&nbsp;</p>
 
-        <!-- Insert -->
+        <!-- Insert user -->
         <form id="add-user-form" method="POST" action="/add-user">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
                 <label> Username </label> <input type="text" name="input-user-name" id="input-user-name">
                 <label> Email </label> <input type="text" name="input-user-email" id="input-user-email">
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUser" value="Add a User">
                 </div>
             </fieldset>
         </form>
-        <p>&nbsp;</p>
 
-        <!-- Assign user to anime using AJAX -->
+        <!-- Assign user to anime -->
         <form id="add-user-anime-form" method="POST" action="/add-user-anime">
             <legend><strong>Assign Anime to User</strong></legend>
             <fieldset class="fields">
                 <label for="input-user-name"> Username </label>
+
                 <!-- Dynamic dropdown for Users -->
                 <select class="dropdown" name="mySelectUser" id="mySelectUser">
                     <option value="test">Select a User</option>
@@ -67,6 +75,7 @@
                     </option>
                     {{/each}}
                 </select>
+
                 <label for="input-anime"> Anime </label>
                 <select class="dropdown" name="mySelectAnime" id="mySelectAnime">
                     <option value="test">Select an Anime</option>
@@ -76,10 +85,12 @@
                     </option>
                     {{/each}}
                 </select>
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUsersAnimes" value="Assign">
                 </div>
             </fieldset>
         </form>
+        
     </section>
 </body>

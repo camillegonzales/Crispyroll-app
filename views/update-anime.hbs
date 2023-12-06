@@ -1,4 +1,9 @@
-<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+<!-- Update Animes Page -->
+
+<!-- Citation for the following form: 
+        Date: 11/16/2023
+        Based on the CS340 starter code for updating data and dynamic dropdowns
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
     <header>
@@ -16,12 +21,14 @@
 
     <section>
         <h1>ANIMES</h1>
+
         <!-- Update anime -->
         <form id="update-anime-form" method="POST" action="/put-anime">
             <legend><strong>Update Anime</strong></legend>
             <fieldset class="fields">
                 <label for="anime-id"> Anime ID </label> <input type="text" name="anime-id-update" id="anime-id-update" value="{{data.anime_id}}" readonly>
                 <label for="anime-title"> Title </label> <input type="text" name="anime-title-update" id="anime-title-update" value="{{data.title}}" readonly>
+
                 <label> Studio Name </label>
                 <select class="dropdown" name="mySelectStudio" id="mySelectStudio">
                     <option value="">  </option>
@@ -29,11 +36,14 @@
                         <option value="{{this.studio_id}}"> {{this.studio_name}} </option>
                     {{/each}}
                 </select>
+
                 <label for="input-num-episode"> Number of Episodes </label> <input type="text" name="num-episode-update" id="num-episode-update" value="{{data.num_episode}}">
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="updateAnime" value="Save Update Anime">
                 </div>
             </fieldset>
         </form>
+
     </section>
 </body>

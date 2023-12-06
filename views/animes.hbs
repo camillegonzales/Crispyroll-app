@@ -1,3 +1,10 @@
+<!-- Animes Page --> 
+
+<!-- Citation for the following table and form: 
+        Date: 11/16/2023
+        Based on the CS340 starter code for displaying and adding data
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
 <body>
     <header>
         <nav>
@@ -14,6 +21,7 @@
 
     <section>
         <h1>ANIMES</h1>
+
         <!-- Animes table -->
         <table id="animes-table" border="1" cellpadding="5">
             <thead>
@@ -39,14 +47,13 @@
             </tbody>
         </table>
         <script src="./js/deleteAnime.js"></script>
-        <p>&nbsp;</p>
 
-
-        <!-- Insert -->
+        <!-- Insert anime -->
         <form id="add-anime-form" method="POST" action="/add-anime">
             <legend><strong>Add Anime</strong></legend>
             <fieldset class="fields">
                 <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title">
+
                 <label> Studio Name </label>
                 <select class="dropdown" name="mySelectStudio" id="mySelectStudio">
                     <option value="test">Select a Studio</option>
@@ -56,7 +63,9 @@
                     </option>
                     {{/each}}
                 </select>
+
                 <label> Number of Episodes </label> <input type="number" name="input-num-episode" id="input-num-episode">
+                
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addAnime" value="Add an Anime">
                 </div>

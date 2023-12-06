@@ -1,4 +1,9 @@
-<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+<!-- Ratings Page -->
+
+<!-- Citation for the following table and form: 
+        Date: 11/16/2023
+        Based on the CS340 starter code for displaying and adding data
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
     <header>
@@ -16,6 +21,7 @@
 
     <section>
         <h1>RATINGS</h1>
+        
         <!-- Ratings table -->
         <table id="ratings-table" border="1" cellpadding="5">
             <thead>
@@ -42,12 +48,15 @@
             </tbody>
         </table>
         <script src="./js/deleteRating.js"></script>
-        <p>&nbsp;</p>
+        
 
-        <!--Insert-->
+        <!-- Insert rating -->
         <form id="add-rating-form" method="POST" action="/add-rating">
             <legend><strong>Add Rating</strong></legend>
             <fieldset class="fields">
+                <p>Please fill out all fields. Select "none" under User to post anonymously. Make sure to select an Anime as well.</p>
+                <br>
+
                 <label> User </label>
                 <select name="mySelectUserName" id="mySelectUserName">
                     <option disabled selected>Select User</option>
@@ -56,6 +65,7 @@
                     {{/each}}
                     <option value="">-- none --</option>
                 </select>
+
                 <label> Anime </label>
                 <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
                     <option disabled selected>Select Anime</option>
@@ -63,12 +73,15 @@
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
+
                 <label> Rating </label> <input type="number" name="input-rating" id="input-rating" placeholder="1-5" min="1" max="5">
-                <label> Review </label> <input type="text" name="input-review" id="input-review">
+                <label> Review </label> <input type="text" name="input-review" id="input-review" placeholder="Max 218 characters">
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addRating" value="Add a Rating">
                 </div>
             </fieldset>
         </form>
+
     </section>
 </body>

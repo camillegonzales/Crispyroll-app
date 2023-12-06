@@ -1,4 +1,9 @@
-<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+<!-- Studios Page --> 
+
+<!-- Citation for the following table and form: 
+        Date: 11/15/2023
+        Based on the CS340 starter code for displaying and adding data
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
     <header>
@@ -16,6 +21,7 @@
 
     <section>
         <h1>STUDIOS</h1>
+
         <!-- Studios table -->
         <table id="studios-table" border="1" cellpadding="5">
             <thead>
@@ -40,7 +46,6 @@
             </tbody>
         </table>
         <script src="./js/deleteStudio.js"></script>
-        <p>&nbsp;</p>
 
         <!-- Insert -->
         <form id="add-studio-form" method="POST" action="/add-studio">
@@ -48,11 +53,12 @@
             <fieldset class="fields">
                 <label> Studio Name </label> <input type="text" name="input-studio-name" id="input-studio-name">
                 <label> Year Founded </label> <input type="number" name="input-year-founded" id="input-year-founded">
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addStudio" value="Add a Studio">
                 </div>
             </fieldset>
         </form>
-        <p>&nbsp;</p>
+
     </section>
 </body>

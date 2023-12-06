@@ -1,4 +1,9 @@
-<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+<!-- Update Ratings Page -->
+
+<!-- Citation for the following form: 
+        Date: 11/16/2023
+        Based on the CS340 starter code for updating data and dynamic dropdowns
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
     <header>
@@ -16,11 +21,17 @@
 
     <section>
         <h1>Rating</h1>
+
         <!-- Update rating -->
         <form id="update-rating-form" method="POST" action="/put-rating">
             <legend><strong>Update Rating</strong></legend>
             <fieldset class="fields">
+                <p>Make updates to user, selected anime, rating (1-5), and review. Change User to "none" if you want to make the post anonymous. Please be sure to reselect User and Anime.</p>
+                <br>
+
                 <label> Rating ID </label> <input type="number" name="rating-id-update" id="rating-id-update" value="{{ratings.rating_id}}" readonly>
+
+                <!-- Dynamic dropdown for user  -->
                 <label> User </label>
                 <select name="mySelectUserID" id="mySelectUserID">
                     <option disabled selected>Select User</option>
@@ -29,6 +40,7 @@
                     {{/each}}
                     <option value="">-- none --</option>
                 </select>
+
                 <label> Anime </label>
                 <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
                     <option disabled selected>Select Anime</option>
@@ -36,12 +48,15 @@
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
+
                 <label> Rating </label> <input type="number" name="rating-update" id="rating-update" placeholder="1-5" min="1" max="5" value="{{ratings.rating}}">
                 <label> Review </label> <input type="text" name="review-update" id="review-update" value="{{ratings.review}}">
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
                 </div>
             </fieldset>
         </form>
+
     </section>
 </body>

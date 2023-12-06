@@ -1,4 +1,9 @@
-<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+<!-- Update User Page -->
+
+<!-- Citation for the following form: 
+        Date: 11/16/2023
+        Based on the CS340 starter code for updating data
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
     <header>
@@ -21,13 +26,15 @@
             <form id="update-user-form" method="POST" action="/put-user">
             <legend><strong>Update User</strong></legend>
             <fieldset class="fields">
-                <label for="user-id"> Username </label> <input type="text" name="user-id-update" id="user-id-update" value="{{data.user_id}}" readonly>
-                <label for="user-name-update"> Studio Name </label> <input type="text" name="user-name-update" id="user-name-update" value="{{data.user_name}}" readonly>
+                <label for="user-id"> User ID </label> <input type="text" name="user-id-update" id="user-id-update" value="{{data.user_id}}" readonly>
+                <label for="user-name-update"> Username </label> <input type="text" name="user-name-update" id="user-name-update" value="{{data.user_name}}" readonly>
                 <label for="input-user-email"> Email </label> <input type="text" name="user-email-update"id="user-email-update" value="{{data.user_email}}">
+
                 <div class="btn-container">
                     <input class="btn" type="submit" id="updateUser" value="Save Update User">
                 </div>
             </fieldset>
         </form>
+
     </section>
 </body>

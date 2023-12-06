@@ -1,4 +1,9 @@
-<!-- Citation: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+<!-- Update Studios Page -->
+
+<!-- Citation for the following form: 
+        Date: 11/15/2023
+        Based on the CS340 starter code for updating data and dynamic dropdowns
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
     <header>
@@ -23,12 +28,14 @@
                 <fieldset class="fields">
                     <label for="studio-id"> Studio ID </label> <input type="text" name="studio-id-update" id="studio-id-update" value="{{data.studio_id}}" readonly>
                     <label for="input-studio-name"> Studio Name </label> <input type="text" name="studio-name-update" id="studio-name-update" value="{{data.studio_name}}" readonly>
-                    <label for="input_year_founded"> Year Founded </label> <input type="number"
-                        name="year-founded-update" id="year-founded-update" value="{{data.year_founded}}">
+
+                    <label for="input_year_founded"> Year Founded </label> <input type="number" name="year-founded-update" id="year-founded-update" value="{{data.year_founded}}">
+
                     <div class="btn-container">
                         <input class="btn" type="submit" id="updateStudio" value="Save Update Studio">
                     </div>
                 </fieldset>
             </form>
+            
     </section>
 </body>
