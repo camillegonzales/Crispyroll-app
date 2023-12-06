@@ -53,7 +53,8 @@ CREATE TABLE Users_Animes (
 DROP TABLE IF EXISTS Ratings;
 CREATE TABLE Ratings (
     rating_id INT AUTO_INCREMENT NOT NULL,
-    user_id INT NOT NULL,
+    -- user_id FK can be NULL to facilitate NULLable relationship
+    user_id INT,
     anime_id INT NOT NULL,
     rating INT NOT NULL,
     review VARCHAR(218) NOT NULL,
