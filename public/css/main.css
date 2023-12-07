@@ -20,6 +20,7 @@ body{
     background-repeat: no-repeat;
     color: black;
     text-align: center;
+    margin-bottom: 4%;
 }
 
 h1 {
@@ -36,6 +37,7 @@ section {
 
 .home-section {
     margin: 3% auto;
+    margin-bottom: 6%;
     padding: 3%;
     width: 100vh;
     color: white;
@@ -52,12 +54,6 @@ section {
     color: white;
     font-size: 1rem;
     background-color: rgba(255, 252, 252, 0.606);
-}
-
-footer {
-    background-color: white;
-    margin-top: 4%;
-    padding: 1%;
 }
 
 /* ========== NAVIGATION ========== */
