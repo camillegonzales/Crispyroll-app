@@ -252,7 +252,7 @@ app.get("/ratings", function(req, res) {
 }); 
 
 
-// Adds new rating to Ratings table and reloads page
+// Adds new rating to Ratings table and reloads page, user_id can be NULL (NULLable relationship)
 app.post('/add-rating', function(req, res) {
     let data = req.body;
     let user_id = parseInt(data['mySelectUserName']);
@@ -325,7 +325,7 @@ app.get('/update-rating', function(req, res) {
 });                                                         
 
 
-// Updates selected row in Ratings table then redirects back to Ratings page
+// Updates selected row in Ratings table then redirects back to Ratings page, user_id can be NULL (NULLable relationship)
 app.post('/put-rating', function(req,res,next) {
     let data = req.body;
     let rating_id = parseInt(data['rating-id-update']);
