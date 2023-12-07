@@ -2,7 +2,7 @@
 
 <!-- Citation for the following table and form: 
         Date: 11/16/2023
-        Based on the CS340 starter code for displaying and adding data
+        Based on the CS340 starter code for displaying and adding data, and dynamic dropdowns
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
@@ -52,11 +52,15 @@
         <form id="add-anime-form" method="POST" action="/add-anime">
             <legend><strong>Add Anime</strong></legend>
             <fieldset class="fields">
-                <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title">
+                <p>Please fill out all fields and select a studio name.</p>
+                <br>
 
+                <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title" required>
+
+                <!-- Dynamic dropdown for Studios -->
                 <label> Studio Name </label>
-                <select class="dropdown" name="mySelectStudio" id="mySelectStudio">
-                    <option value="test">Select a Studio</option>
+                <select class="dropdown" name="mySelectStudio" id="mySelectStudio" required>
+                    <option disabled selected> Select a Studio </option>
                     {{#each studios}}
                     <option value="{{this.studio_id}}">
                         {{this.studio_name}}
@@ -64,7 +68,7 @@
                     {{/each}}
                 </select>
 
-                <label> Number of Episodes </label> <input type="number" name="input-num-episode" id="input-num-episode">
+                <label> Number of Episodes </label> <input type="number" name="input-num-episode" id="input-num-episode" required>
                 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addAnime" value="Add an Anime">
