@@ -44,9 +44,9 @@ function deleteRow(anime_id) {
 function deleteDropDownMenu(anime_id) {
     let selectMenu = document.getElementById("mySelectAnime");
     for (let i = 0; i < selectMenu.length; i++) {
-      if (Number(selectMenu.options[i].value) === Number(anime_id)) {
-          selectMenu[i].remove();
-          break;
+        if (Number(selectMenu.options[i].value) === Number(anime_id)) {
+            selectMenu[i].remove();
+            break;
         } 
     }
 }
