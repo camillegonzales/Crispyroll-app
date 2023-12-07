@@ -182,3 +182,7 @@ select {
 .dropdown {
     margin-bottom: 4%;
 }
+
+.readonly {
+    background-color: rgba(128, 128, 128, 0.306);
+}
