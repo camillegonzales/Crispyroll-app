@@ -1,7 +1,6 @@
 # Crispyroll
 
 Project Title: Crispyroll <br />
-Group Name: Query Queens <br />
 Group 50: Camille Kyna Gonzales, Jennifer Trainor <br />
 
 All code is based on the CS 340 starter code. <br />
