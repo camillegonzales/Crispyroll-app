@@ -3,7 +3,7 @@
 /*  
   Citation for the following setup, routes, and listener: 
     Date: 11/14/2023
-    Based on the CS340 starter code
+    Based on the CS340 starter code, with the exception of the UPDATE steps as our own work
     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
 */
 

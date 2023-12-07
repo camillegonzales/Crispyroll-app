@@ -3,7 +3,7 @@
 Project Title: Crispyroll <br />
 Group 50: Camille Kyna Gonzales, Jennifer Trainor <br />
 
-All code is based on the CS 340 starter code. <br />
+All code is based on the CS 340 starter code, with the exception of the UPDATE steps as our own work. <br />
 Date: 11/14/2024 <br />
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
 
