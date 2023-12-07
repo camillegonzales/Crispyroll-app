@@ -30,7 +30,7 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Edit</th>
-                    <th>* Delete</th>
+                    <th>Delete *</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +55,7 @@
         <form id="add-user-form" method="POST" action="/add-user">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
-                <p>Please fill out all fields. Make sure to enter a valid email.</p>
+                <p>All fields required. Enter a valid email.</p>
                 <br>
 
                 <label> Username </label> <input type="text" name="input-user-name" id="input-user-name" placeholder="Create a username">
@@ -71,7 +71,7 @@
         <form id="add-user-anime-form" method="POST" action="/add-user-anime">
             <legend><strong>Assign Anime to User</strong></legend>
             <fieldset class="fields">
-                <p>Please select a user and an anime. The chosen anime will be assigned to the selected user and added to the watchlist (Users/Animes table).</p>
+                <p>Select a user and an anime. The anime will be assigned to the user and added to the watchlist (Users/Animes table).</p>
                 <br>
 
                 <label for="input-user-name"> Username </label>
