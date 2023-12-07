@@ -57,8 +57,9 @@
                 <p>Please fill out all fields. Select "none" under User to post anonymously. Make sure to select an Anime as well.</p>
                 <br>
 
+                <!-- Dynamic dropdown for Users -->
                 <label> User </label>
-                <select name="mySelectUserName" id="mySelectUserName">
+                <select class="dropdown" name="mySelectUserName" id="mySelectUserName" required>
                     <option disabled selected>Select User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
@@ -66,16 +67,17 @@
                     <option value="">-- none --</option>
                 </select>
 
+                <!-- Dynamic dropdown for Animes -->
                 <label> Anime </label>
-                <select name="mySelectAnimeTitle" id="mySelectAnimeTitle">
+                <select class="dropdown" name="mySelectAnimeTitle" id="mySelectAnimeTitle" required>
                     <option disabled selected>Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
 
-                <label> Rating </label> <input type="number" name="input-rating" id="input-rating" placeholder="1-5" min="1" max="5">
-                <label> Review </label> <input type="text" name="input-review" id="input-review" placeholder="Max 218 characters">
+                <label> Rating </label> <input type="number" name="input-rating" id="input-rating" placeholder="1-5" min="1" max="5" required>
+                <label> Review </label> <input type="text" name="input-review" id="input-review" placeholder="Max 218 characters" maxlength="218" required>
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addRating" value="Add a Rating">
