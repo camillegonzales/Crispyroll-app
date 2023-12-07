@@ -208,12 +208,11 @@ app.get('/update-anime', function(req, res) {
 // Updates selected row in Animes table then redirects back to Animes page
 app.post('/put-anime', function(req,res,next) {
     let data = req.body;
-    let title = data['anime-title-update'];
     let studio_id = parseInt(data['mySelectStudio']);
     let num_episode = parseInt(data['num-episode-update']);
     let anime_id = parseInt(data['anime-id-update']);
 
-    query1 = `UPDATE Animes SET title = '${title}', studio_id = ${studio_id}, num_episode = ${num_episode} WHERE anime_id = ${anime_id};`;
+    query1 = `UPDATE Animes SET studio_id = ${studio_id}, num_episode = ${num_episode} WHERE anime_id = ${anime_id};`;
 
     db.pool.query(query1, function(error, rows, fields) {
         if (error) {

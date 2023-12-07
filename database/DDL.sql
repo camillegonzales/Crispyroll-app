@@ -105,7 +105,7 @@ VALUES
 INSERT INTO Ratings (user_id, anime_id, rating, review)
 VALUES 
     (NULL, (SELECT anime_id FROM Animes WHERE title='Hunter x Hunter'), 5, 'My favorite anime of all time!!'),
-    ((SELECT user_id FROM Users WHERE user_name='Honestliz'), (SELECT anime_id FROM Animes WHERE title='Attack on Titan'), 5, 'One of the best animes out there, the plot is so thought out and the characters are all brilliantly written'),
+    ((SELECT user_id FROM Users WHERE user_name='Honestliz'), (SELECT anime_id FROM Animes WHERE title='Attack on Titan'), 5, 'One of the best animes out there, the plot is so thought out'),
     ((SELECT user_id FROM Users WHERE user_name='Honestliz'), (SELECT anime_id FROM Animes WHERE title='Terror in Resonance'), 5, 'Really sad but very well written and unique'),
     ((SELECT user_id FROM Users WHERE user_name='Serexolik'), (SELECT anime_id FROM Animes WHERE title='The Promised Neverland'), 3, 'Season 1 was amazing, but season 2 was really bad'),
     ((SELECT user_id FROM Users WHERE user_name='PeppermintP'), (SELECT anime_id FROM Animes WHERE title='Hunter x Hunter'), 5, 'Such an original anime and I love the main characters'),
