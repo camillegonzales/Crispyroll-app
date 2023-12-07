@@ -78,7 +78,7 @@
 
                 <!-- Dynamic dropdown for Users -->
                 <select class="dropdown" name="mySelectUser" id="mySelectUser">
-                    <option value="test">Select a User</option>
+                    <option disabled selected>Select a User</option>
                     {{#each users}}
                     <option value="{{this.user_id}}">
                         {{this.user_name}}
@@ -89,7 +89,7 @@
                 <!-- Dynamic dropdown for Animes -->
                 <label for="input-anime"> Anime </label>
                 <select class="dropdown" name="mySelectAnime" id="mySelectAnime">
-                    <option value="test">Select an Anime</option>
+                    <option disabled selected>Select an Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">
                         {{this.title}}
