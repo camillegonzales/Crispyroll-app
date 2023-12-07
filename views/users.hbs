@@ -2,7 +2,7 @@
 
 <!-- Citation for the following table and form: 
         Date: 11/16/2023
-        Based on the CS340 starter code for displaying and adding data
+        Based on the CS340 starter code for displaying and adding data, and dynamic dropdowns
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
@@ -23,14 +23,14 @@
         <h1>USERS</h1>
 
         <!-- Users table -->
-        <table id="users-table" border="1" cellpadding="5">
+        <table class="users-table" id="users-table" border="1" cellpadding="5">
             <thead>
                 <tr>
                     {{#each users.[0]}}
                     <th>{{@key}}</th>
                     {{/each}}
                     <th>Edit</th>
-                    <th>Delete</th>
+                    <th>*Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,12 +47,19 @@
         </table>
         <script src="./js/deleteUser.js"></script>
 
+        <div class="disclaimer">
+            <p><strong>* Please note that deleting a user will also delete all entries of animes assigned to that user in the watchlist (Users/Animes table).</strong> </p>
+        </div>
+
         <!-- Insert user -->
         <form id="add-user-form" method="POST" action="/add-user">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
-                <label> Username </label> <input type="text" name="input-user-name" id="input-user-name">
-                <label> Email </label> <input type="text" name="input-user-email" id="input-user-email">
+                <p>Please fill out all fields. Make sure to enter a valid email.</p>
+                <br>
+
+                <label> Username </label> <input type="text" name="input-user-name" id="input-user-name" placeholder="Create a username">
+                <label> Email </label> <input type="text" name="input-user-email" id="input-user-email" placeholder="Enter your email (e.g., johndoe@example.com)">
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUser" value="Add a User">
@@ -60,10 +67,13 @@
             </fieldset>
         </form>
 
-        <!-- Assign user to anime -->
+        <!-- Assign anime to user -->
         <form id="add-user-anime-form" method="POST" action="/add-user-anime">
             <legend><strong>Assign Anime to User</strong></legend>
             <fieldset class="fields">
+                <p>Please select a user and an anime. The chosen anime will be assigned to the selected user and added to the watchlist (Users/Animes table).</p>
+                <br>
+
                 <label for="input-user-name"> Username </label>
 
                 <!-- Dynamic dropdown for Users -->

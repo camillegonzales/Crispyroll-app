@@ -26,9 +26,13 @@
             <form id="update-user-form" method="POST" action="/put-user">
             <legend><strong>Update User</strong></legend>
             <fieldset class="fields">
-                <label for="user-id"> User ID </label> <input type="text" name="user-id-update" id="user-id-update" value="{{data.user_id}}" readonly>
-                <label for="user-name-update"> Username </label> <input type="text" name="user-name-update" id="user-name-update" value="{{data.user_name}}" readonly>
-                <label for="input-user-email"> Email </label> <input type="text" name="user-email-update"id="user-email-update" value="{{data.user_email}}">
+                <p>Please fill out all fields. Make sure to enter a valid email.</p>
+                <br>
+
+                <label for="user-id"> User ID </label> <input class="readonly" type="text" name="user-id-update" id="user-id-update" value="{{data.user_id}}" readonly>
+                <label for="user-name-update"> Username </label> <input class="readonly" type="text" name="user-name-update" id="user-name-update" value="{{data.user_name}}" readonly>
+
+                <label for="input-user-email"> Email </label> <input type="email" name="user-email-update"id="user-email-update" value="{{data.user_email}}">
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="updateUser" value="Save Update User">
