@@ -4,7 +4,13 @@
         Date: 11/16/2023
         Based on the CS340 starter code for updating data and dynamic dropdowns
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
-
+        
+<!-- Citation for the JS function:
+        Date: 12/08/2023
+        Author: Dawn Toh
+        Based on the code snippet to set the 'selected' attribute on the option element that matches query
+        https://edstem.org/us/courses/44903/discussion/3987592?answer=9209049 -->
+        
 <body>
     <header>
         <nav>
@@ -34,12 +40,25 @@
 
                 <!-- Dynamic dropdown for Studios -->
                 <label> Studio Name </label>
-                <select class="dropdown" name="mySelectStudio" id="mySelectStudio">
-                    <option disabled selected>Select a Studio</option>
+                <select class="dropdown" name="mySelectStudio" id="mySelectStudio" value="{{data.studio_id}}">
                     {{#each studios}}
                         <option value="{{this.studio_id}}"> {{this.studio_name}} </option>
                     {{/each}}
                 </select>
+
+                <!-- Finds matching ID and sets the 'selected' attribute for this option in the dropdown -->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        let studioId = document.getElementById("mySelectStudio").getAttribute("value");
+                        let studioOptions = document.getElementById("mySelectStudio").children;
+
+                        for (let i = 0; i < studioOptions.length; i++) {
+                            if (studioOptions[i].getAttribute("value") === studioId) {
+                                studioOptions[i].setAttribute("selected", "selected");
+                            }
+                        }  
+                    });
+                </script>
 
                 <label for="input-num-episode"> Number of Episodes </label> <input type="text" name="num-episode-update" id="num-episode-update" value="{{data.num_episode}}" placeholder="# of episodes in anime">
 

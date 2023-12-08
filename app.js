@@ -180,7 +180,7 @@ app.delete('/delete-anime-ajax/', function(req,res,next) {
 app.get('/update-anime', function(req, res) {  
     let anime_id = req.query.anime_id;
 
-    let query1 = `SELECT * FROM Animes WHERE anime_id = ${anime_id};`;
+    let query1 = `SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode FROM Animes INNER JOIN Studios ON Animes.studio_id = Studios.studio_id WHERE anime_id = ${anime_id};`;
     let query2 = `SELECT * FROM Studios;`;
 
     db.pool.query(query1, function(error, rows, fields) {

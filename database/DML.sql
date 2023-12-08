@@ -32,12 +32,18 @@ WHERE studio_id = :studio_id_to_delete;
 
 /* ------------------- Animes queries ------------------- */
 -- Select Animes for table
-SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode 
+SELECT Animes.anime_id, Animes.title, Studios.studio_name, Animes.num_episode 
 FROM Animes
 INNER JOIN Studios ON Animes.studio_id = Studios.studio_id;
 
 -- Select all Animes (dropdowns)
 SELECT * FROM Animes;
+
+-- Select row from Animes for update form
+SELECT Animes.anime_id, Animes.title, Studios.studio_id, Animes.num_episode 
+FROM Animes 
+INNER JOIN Studios ON Animes.studio_id = Studios.studio_id 
+WHERE anime_id = ${anime_id};
 
 -- Add new Anime
 INSERT INTO Animes (title, studio_id, num_episode)

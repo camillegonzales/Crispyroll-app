@@ -41,7 +41,6 @@
                 <!-- Dynamic dropdown for Animes -->
                 <label> Anime </label>
                 <select name="mySelectAnimeTitle" id="mySelectAnimeTitle" value="{{useranime.anime_id}}" required>
-                    <option disabled selected>Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
