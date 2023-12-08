@@ -50,11 +50,11 @@
                 <!-- Finds matching ID and sets the 'selected' attribute for this option in the dropdown -->
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
-                        let ratingId = "{{ratings.user_id}}";
+                        let userId = document.getElementById("mySelectUserID").getAttribute("value");
                         let userOptions = document.getElementById("mySelectUserID").children;
 
                         for (let i = 0; i < userOptions.length; i++) {
-                            if (userOptions[i].getAttribute("value") === ratingId) {
+                            if (userOptions[i].getAttribute("value") === userId) {
                                 userOptions[i].setAttribute("selected", "selected");
                             }
                         }  

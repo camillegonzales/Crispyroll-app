@@ -404,7 +404,7 @@ app.delete('/delete-user-anime-ajax/', function(req,res,next) {
 app.get('/update-useranime', function(req, res) {  
     let user_anime_id = req.query.user_anime_id;
 
-    let query1 = `SELECT Users_Animes.user_anime_id, Users.user_name FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id WHERE user_anime_id = ${user_anime_id};`;
+    let query1 = `SELECT Users_Animes.user_anime_id, Users.user_name, Animes.anime_id FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id WHERE user_anime_id = ${user_anime_id};`;
     let query2 = `SELECT * FROM Animes;`;
 
     db.pool.query(query1, function(error, rows, fields) {

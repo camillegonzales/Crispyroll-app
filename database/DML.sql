@@ -83,9 +83,10 @@ INNER JOIN Users ON Users_Animes.user_id = Users.user_id
 INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id;
 
 -- Select row from Users_Animes for update form
-SELECT Users_Animes.user_anime_id, Users.user_name 
+SELECT Users_Animes.user_anime_id, Users.user_name, Animes.anime_id 
 FROM Users_Animes 
 INNER JOIN Users ON Users_Animes.user_id = Users.user_id 
+INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id
 WHERE user_anime_id = :user_anime_id_from_query_string;
 
 -- Associate a User with an Anime

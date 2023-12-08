@@ -5,6 +5,12 @@
         Based on the CS340 starter code for updating data and dynamic dropdowns
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
+<!-- Citation for the JS function:
+        Date: 12/08/2023
+        Author: Dawn Toh
+        Based on the code snippet to set the 'selected' attribute on the option element that matches query
+        https://edstem.org/us/courses/44903/discussion/3987592?answer=9209049 -->
+
 <body>
     <header>
         <nav>
@@ -34,12 +40,26 @@
 
                 <!-- Dynamic dropdown for Animes -->
                 <label> Anime </label>
-                <select name="mySelectAnimeTitle" id="mySelectAnimeTitle" required>
+                <select name="mySelectAnimeTitle" id="mySelectAnimeTitle" value="{{useranime.anime_id}}" required>
                     <option disabled selected>Select Anime</option>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>
                     {{/each}}
                 </select>
+
+                <!-- Finds matching ID and sets the 'selected' attribute for this option in the dropdown -->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        let animeId = document.getElementById("mySelectAnimeTitle").getAttribute("value");
+                        let animeOptions = document.getElementById("mySelectAnimeTitle").children;
+
+                        for (let i = 0; i < animeOptions.length; i++) {
+                            if (animeOptions[i].getAttribute("value") === animeId) {
+                                animeOptions[i].setAttribute("selected", "selected");
+                            }
+                        }  
+                    });
+                </script>
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
