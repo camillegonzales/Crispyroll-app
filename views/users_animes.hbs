@@ -2,7 +2,7 @@
 
 <!-- Citation for the following table and form: 
         Date: 11/16/2023
-        Based on the CS340 starter code for displaying data
+        Based on the CS340 starter code for displaying and adding data
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
 <body>
@@ -29,6 +29,7 @@
                     <th>User Anime ID</th>
                     <th>User</th>
                     <th>Anime</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -38,12 +39,49 @@
                     <td>{{this.user_anime_id}}</td>
                     <td>{{this.user_name}}</td>
                     <td>{{this.title}}</td>
+                    <td><button><a href="/update-useranime?user_anime_id={{this.user_anime_id}}">Edit</a></button></td>
                     <td><button onclick="deleteUserAnime({{this.user_anime_id}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
         <script src="./js/deleteUserAnime.js"></script>
+
+        <!-- Assign anime to user -->
+        <form id="add-user-anime-form" method="POST" action="/add-user-anime">
+            <legend><strong>Assign Anime to User</strong></legend>
+            <fieldset class="fields">
+                <p>Select a user and an anime. The anime will be assigned to the user and added to the watchlist (Users/Animes table).</p>
+                <br>
+
+                <label for="input-user-name"> Username </label>
+
+                <!-- Dynamic dropdown for Users -->
+                <select class="dropdown" name="mySelectUser" id="mySelectUser">
+                    <option disabled selected>Select a User</option>
+                    {{#each users}}
+                    <option value="{{this.user_id}}">
+                        {{this.user_name}}
+                    </option>
+                    {{/each}}
+                </select>
+
+                <!-- Dynamic dropdown for Animes -->
+                <label for="input-anime"> Anime </label>
+                <select class="dropdown" name="mySelectAnime" id="mySelectAnime">
+                    <option disabled selected>Select an Anime</option>
+                    {{#each animes}}
+                    <option value="{{this.anime_id}}">
+                        {{this.title}}
+                    </option>
+                    {{/each}}
+                </select>
+
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="addUsersAnimes" value="Assign">
+                </div>
+            </fieldset>
+        </form>
         
     </section>
 </body>

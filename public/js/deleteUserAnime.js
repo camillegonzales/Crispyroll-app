@@ -7,7 +7,7 @@
     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
 */
 
-// AJAX to delete user/anime dynamically from table
+// AJAX to DELETE user/anime (M:N relationship) dynamically from table
 function deleteUserAnime(user_anime_id) {
     let data = {
         user_anime_id: user_anime_id

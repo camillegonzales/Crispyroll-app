@@ -1,0 +1,51 @@
+<!-- Update Users/Animes Page (intersection table for M:N) --> 
+
+<!-- Citation for the following table and form: 
+        Date: 12/08/2023
+        Based on the CS340 starter code for updating data and dynamic dropdowns
+        Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/index">CRISPYROLL</a></div>
+            <div class="nav-links">
+                <a href="/users">Users</a>
+                <a href="/animes">Animes</a>
+                <a href="/studios">Studios</a>
+                <a href="/ratings">Ratings</a>
+                <div class="highlight"><a href="/users_animes">Users/Animes</a></div>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h1>USERS/ANIMES</h1>
+        
+        <!-- Update user/anime (M:N) relationship -->
+        <form id="update-useranime-form" method="POST" action="/put-useranime">
+            <legend><strong>Update User/Anime Relationship</strong></legend>
+            <fieldset class="fields">
+                <p>Reselect an anime to update relationship.</p>
+                <br>
+
+                <label> User Anime ID </label> <input class="readonly" type="number" name="useranime-id-update" id="useranime-id-update" value="{{useranime.user_anime_id}}" readonly>
+                <label> User </label> <input class="readonly" type="text" name="useranime-user-update" id="useranime-user-update" value="{{useranime.user_name}}" readonly>
+
+                <!-- Dynamic dropdown for Animes -->
+                <label> Anime </label>
+                <select name="mySelectAnimeTitle" id="mySelectAnimeTitle" required>
+                    <option disabled selected>Select Anime</option>
+                    {{#each animes}}
+                    <option value="{{this.anime_id}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
+
+                <div class="btn-container">
+                    <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">
+                </div>
+            </fieldset>
+        </form>
+        
+    </section>
+</body>

@@ -57,6 +57,7 @@ WHERE anime_id = :anime_id_to_delete;
 -- Select Users for table
 SELECT user_id, user_name, user_email 
 FROM Users;
+
 -- Select all Users (dropdowns)
 SELECT * FROM Users;
 
@@ -75,15 +76,25 @@ WHERE user_id = :user_id_to_delete;
 
 
 /* ------------------- Users_Animes (M:N) queries ------------------- */
--- Select all Users with their associated Animes for table
+-- Select entries of Users with their associated Animes for table
 SELECT Users_Animes.user_anime_id, Users.user_name, Animes.title
 FROM Users_Animes
 INNER JOIN Users ON Users_Animes.user_id = Users.user_id
 INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id;
 
+-- Select row from Users_Animes for update form
+SELECT Users_Animes.user_anime_id, Users.user_name 
+FROM Users_Animes 
+INNER JOIN Users ON Users_Animes.user_id = Users.user_id 
+WHERE user_anime_id = :user_anime_id_from_query_string;
+
 -- Associate a User with an Anime
 INSERT INTO Users_Animes (user_id, anime_id)
 VALUES (:user_id_from_dropdown, :anime_id_from_dropdown);
+
+UPDATE Users_Animes 
+SET anime_id = :anime_id_from_dropdown
+WHERE user_anime_id = :user_anime_id_to_update;
 
 -- Delete a selected M:N relationship from table
 DELETE FROM Users_Animes 
@@ -96,6 +107,9 @@ SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings
 FROM Ratings
 LEFT JOIN Users ON Ratings.user_id = Users.user_id
 INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id;
+
+-- Select row from Ratings for update form
+SELECT * FROM Ratings WHERE rating_id = :rating_id_from_query_string;
 
 -- Add new Rating
 INSERT INTO Ratings (user_id, anime_id, rating, review)

@@ -35,26 +35,16 @@ app.get("/index", function(req, res){
 
 
 /* ---------- Users routes ---------- */
-// Selects data to populate table and dynamic dropdowns on Users page
+// Selects data to populate table on Users page
 app.get("/users", function(req, res) {
     let query1 = "SELECT user_id, user_name, user_email FROM Users;";
-    let query2 = "SELECT * FROM Animes;";
-    let query3 = "SELECT * FROM Studios;";
 
     db.pool.query(query1, function(error, rows, fields) {
         let users = rows;
-
-        db.pool.query(query2, (error, rows, fields) => {
-            let animes = rows;
-
-            db.pool.query(query3, (error, rows, fields) => {
-                let studios = rows;
-
-                return res.render('users', {users:users, animes: animes, studios:studios});
-            })
-        })
+            return res.render('users', {users:users});
     })
 });
+
 
 
 // Adds new user to Users table and reloads page
@@ -357,9 +347,21 @@ app.post('/put-rating', function(req,res,next) {
 // Selects data to populate table on Users/Animes page
 app.get("/users_animes", function(req, res) {
     let query1 = "SELECT Users_Animes.user_anime_id, Users.user_name, Animes.title FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id INNER JOIN Animes ON Users_Animes.anime_id = Animes.anime_id ORDER BY user_anime_id ASC;";
+    let query2 = "SELECT * FROM Animes;";
+    let query3 = "SELECT * FROM Users;";
 
     db.pool.query(query1, function(error, rows, fields) {
-        res.render('users_animes', {useranimes:rows});
+        let useranimes = rows;
+
+        db.pool.query(query2, (error, rows, fields) => {
+            let animes = rows;
+
+            db.pool.query(query3, (error, rows, fields) => {
+                let users = rows;
+
+                return res.render('users_animes', {useranimes:useranimes, animes: animes, users:users});
+            })
+        })
     })
 });
 
@@ -402,6 +404,45 @@ app.delete('/delete-user-anime-ajax/', function(req,res,next) {
             res.sendStatus(204);
         }
     })
+});
+
+
+// Selects row from Ratings table to populate rating update form
+app.get('/update-useranime', function(req, res) {  
+    let user_anime_id = req.query.user_anime_id;
+
+    let query1 = `SELECT Users_Animes.user_anime_id, Users.user_name FROM Users_Animes INNER JOIN Users ON Users_Animes.user_id = Users.user_id WHERE user_anime_id = ${user_anime_id};`;
+    let query2 = `SELECT * FROM Animes;`;
+
+    db.pool.query(query1, function(error, rows, fields) {
+        let useranime = rows[0];
+
+        db.pool.query(query2, (error, rows, fields) => {
+            let animes = rows;
+                return res.render('update-useranime', {useranime :useranime, animes: animes});
+            
+        })
+    })
+});                                                         
+
+
+// Updates selected row in Ratings table then redirects back to Ratings page, user_id can be NULL (NULLable relationship)
+app.post('/put-useranime', function(req,res,next) {
+    let data = req.body;
+    let user_anime_id = parseInt(data['useranime-id-update']);
+    let anime_id = parseInt(data['mySelectAnimeTitle']);
+
+    let updateUserAnime = `UPDATE Users_Animes SET anime_id = ${anime_id} WHERE user_anime_id = ${user_anime_id};`;
+    db.pool.query(updateUserAnime, function(error, rows, fields) {
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.redirect('/users_animes');
+        }
+    }) 
 });
 
 
