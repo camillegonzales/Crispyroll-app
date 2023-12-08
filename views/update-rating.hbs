@@ -5,6 +5,12 @@
         Based on the CS340 starter code for updating data and dynamic dropdowns
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app -->
 
+<!-- Citation for the JS function:
+        Date: 12/08/2023
+        Author: Dawn Toh
+        Based on the code snippet to set the 'selected' attribute on the option element that matches query
+        https://edstem.org/us/courses/44903/discussion/3987592?answer=9209049 -->
+
 <body>
     <header>
         <nav>
@@ -34,13 +40,26 @@
                 <!-- Updatable NULLable relationship -->
                 <!-- Dynamic dropdown for Users -->
                 <label> User </label>
-                <select name="mySelectUserID" id="mySelectUserID" required>
-                    <option disabled selected>Select User</option>
+                <select name="mySelectUserID" id="mySelectUserID" value="{{ratings.user_id}}" required>
                     {{#each users}}
                     <option value="{{this.user_id}}">{{this.user_name}}</option>
                     {{/each}}
                     <option value="">-- none --</option>
                 </select>
+
+                <!-- Finds matching ID and sets the 'selected' attribute for this option in the dropdown -->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        let ratingId = "{{ratings.user_id}}";
+                        let userOptions = document.getElementById("mySelectUserID").children;
+
+                        for (let i = 0; i < userOptions.length; i++) {
+                            if (userOptions[i].getAttribute("value") === ratingId) {
+                                userOptions[i].setAttribute("selected", "selected");
+                            }
+                        }  
+                    });
+                </script>
 
                 <label> Anime </label> <input class="readonly" type="text" name="rating-id-update" id="rating-id-update" value="{{ratings.title}}" readonly>
 

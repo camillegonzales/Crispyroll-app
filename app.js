@@ -294,7 +294,7 @@ app.delete('/delete-rating-ajax/', function(req,res,next) {
 app.get('/update-rating', function(req, res) {  
     let rating_id = req.query.rating_id;
 
-    let query1 = `SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings LEFT JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id WHERE rating_id = ${rating_id};`;
+    let query1 = `SELECT Ratings.rating_id, Users.user_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings LEFT JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id WHERE rating_id = ${rating_id};`;
     let query2 = `SELECT * FROM Users;`;
 
     db.pool.query(query1, function(error, rows, fields) {
