@@ -294,21 +294,15 @@ app.delete('/delete-rating-ajax/', function(req,res,next) {
 app.get('/update-rating', function(req, res) {  
     let rating_id = req.query.rating_id;
 
-    let query1 = `SELECT * FROM Ratings WHERE rating_id = ${rating_id};`;
+    let query1 = `SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review FROM Ratings LEFT JOIN Users ON Ratings.user_id = Users.user_id INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id WHERE rating_id = ${rating_id};`;
     let query2 = `SELECT * FROM Users;`;
-    let query3 = `SELECT * FROM Animes;`;
 
     db.pool.query(query1, function(error, rows, fields) {
         let ratings = rows[0];
 
         db.pool.query(query2, (error, rows, fields) => {
             let users = rows;
-
-            db.pool.query(query3, (error, rows, fields) => {
-                let animes = rows;
-
-                return res.render('update-rating', {ratings: ratings, users: users, animes: animes});
-            })  
+                return res.render('update-rating', {ratings: ratings, users: users});
         })
     })
 });                                                         
@@ -319,7 +313,6 @@ app.post('/put-rating', function(req,res,next) {
     let data = req.body;
     let rating_id = parseInt(data['rating-id-update']);
     let user_id = parseInt(data['mySelectUserID']);
-    let anime_id = parseInt(data['mySelectAnimeTitle']);
     let rating = parseInt(data['rating-update']);
     let review = data['review-update'];
 
@@ -329,7 +322,7 @@ app.post('/put-rating', function(req,res,next) {
         user_id = 'NULL'
     };
 
-    let updateRating = `UPDATE Ratings SET user_id = ${user_id}, anime_id = ${anime_id}, rating = ${rating}, review = '${review}' WHERE rating_id = ${rating_id};`;
+    let updateRating = `UPDATE Ratings SET user_id = ${user_id}, rating = ${rating}, review = '${review}' WHERE rating_id = ${rating_id};`;
     db.pool.query(updateRating, function(error, rows, fields) {
         if (error) {
             console.log(error)

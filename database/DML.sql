@@ -109,7 +109,10 @@ LEFT JOIN Users ON Ratings.user_id = Users.user_id
 INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id;
 
 -- Select row from Ratings for update form
-SELECT * FROM Ratings WHERE rating_id = :rating_id_from_query_string;
+SELECT Ratings.rating_id, Users.user_name, Animes.title, Ratings.rating, Ratings.review 
+FROM Ratings LEFT JOIN Users ON Ratings.user_id = Users.user_id 
+INNER JOIN Animes ON Ratings.anime_id = Animes.anime_id 
+WHERE rating_id = :rating_id_from_query_string;
 
 -- Add new Rating
 INSERT INTO Ratings (user_id, anime_id, rating, review)
@@ -117,7 +120,7 @@ VALUES (:user_id_from_dropdown, :anime_id_from_dropdown, :rating_Input, :review_
 
 -- Update Rating
 UPDATE Ratings
-SET user_id = :user_id_from_dropdown, anime_id = :anime_id_from_dropdown, rating = :rating_Input, review = :review_Input
+SET user_id = :user_id_from_dropdown, rating = :rating_Input, review = :review_Input
 WHERE rating_id = :rating_id_to_update;
 
 -- Delete Rating
