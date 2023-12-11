@@ -39,8 +39,8 @@
                 <label for="anime-title"> Title </label> <input class="readonly" type="text" name="anime-title-update" id="anime-title-update" value="{{data.title}}" readonly>
 
                 <!-- Dynamic dropdown for Studios -->
-                <label> Studio Name </label>
-                <select class="dropdown" name="mySelectStudio" id="mySelectStudio" value="{{data.studio_id}}">
+                <label> Studio Name* </label>
+                <select class="dropdown" name="mySelectStudio" id="mySelectStudio" value="{{data.studio_id}}" required>
                     {{#each studios}}
                         <option value="{{this.studio_id}}"> {{this.studio_name}} </option>
                     {{/each}}
@@ -60,7 +60,7 @@
                     });
                 </script>
 
-                <label for="input-num-episode"> Number of Episodes </label> <input type="text" name="num-episode-update" id="num-episode-update" value="{{data.num_episode}}" placeholder="# of episodes in anime">
+                <label for="input-num-episode"> Number of Episodes* </label> <input type="text" name="num-episode-update" id="num-episode-update" value="{{data.num_episode}}" placeholder="# of episodes in anime" required>
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="updateAnime" value="Save Update Anime">

@@ -26,13 +26,13 @@
             <form id="update-studio-form" method="POST" action="/put-studio">
                 <legend><strong>Update Studio</strong></legend>
                 <fieldset class="fields">
-                    <p>All fields required. Enter a valid 4-digit year.</p>
+                    <p>All fields required*. Enter a valid 4-digit year.</p>
                     <br>
 
                     <label for="studio-id"> Studio ID </label> <input class="readonly" type="text" name="studio-id-update" id="studio-id-update" value="{{data.studio_id}}" readonly>
                     <label for="input-studio-name"> Studio Name </label> <input class="readonly" type="text" name="studio-name-update" id="studio-name-update" value="{{data.studio_name}}" readonly>
 
-                    <label for="input_year_founded"> Year Founded </label> <input type="number" name="year-founded-update" id="year-founded-update" value="{{data.year_founded}}" placeholder="Year studio was founded (yyyy)" required>
+                    <label for="input_year_founded"> Year Founded* </label> <input type="number" name="year-founded-update" id="year-founded-update" value="{{data.year_founded}}" placeholder="Year studio was founded (yyyy)" required>
 
                     <div class="btn-container">
                         <input class="btn" type="submit" id="updateStudio" value="Save Update Studio">

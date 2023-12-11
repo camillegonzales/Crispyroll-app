@@ -32,7 +32,7 @@
         <form id="update-rating-form" method="POST" action="/put-rating">
             <legend><strong>Update Rating</strong></legend>
             <fieldset class="fields">
-                <p>All fields required. Change User to "none" if you want to make the post anonymous.</p>
+                <p>All fields required*. Change User to "none" if you want to make the post anonymous.</p>
                 <br>
 
                 <label> Rating ID </label> <input class="readonly" type="number" name="rating-id-update" id="rating-id-update" value="{{ratings.rating_id}}" readonly>
@@ -63,8 +63,8 @@
 
                 <label> Anime </label> <input class="readonly" type="text" name="rating-id-update" id="rating-id-update" value="{{ratings.title}}" readonly>
 
-                <label> Rating </label> <input type="number" name="rating-update" id="rating-update" placeholder="1-5" min="1" max="5" value="{{ratings.rating}}" required>
-                <label> Review </label> <input type="text" name="review-update" id="review-update" value="{{ratings.review}}" placeholder="Max 218 characters" required>
+                <label> Rating* </label> <input type="number" name="rating-update" id="rating-update" placeholder="1-5" min="1" max="5" value="{{ratings.rating}}" required>
+                <label> Review* </label> <input type="text" name="review-update" id="review-update" value="{{ratings.review}}" placeholder="Max 218 characters" required>
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="UpdateSaveRating" value="Save Update Rating">

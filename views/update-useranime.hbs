@@ -32,14 +32,14 @@
         <form id="update-useranime-form" method="POST" action="/put-useranime">
             <legend><strong>Update User/Anime Relationship</strong></legend>
             <fieldset class="fields">
-                <p>Reselect an anime to update relationship.</p>
+                <p>Reselect an anime (required*) to update relationship.</p>
                 <br>
 
                 <label> User Anime ID </label> <input class="readonly" type="number" name="useranime-id-update" id="useranime-id-update" value="{{useranime.user_anime_id}}" readonly>
                 <label> User </label> <input class="readonly" type="text" name="useranime-user-update" id="useranime-user-update" value="{{useranime.user_name}}" readonly>
 
                 <!-- Dynamic dropdown for Animes -->
-                <label> Anime </label>
+                <label> Anime* </label>
                 <select name="mySelectAnimeTitle" id="mySelectAnimeTitle" value="{{useranime.anime_id}}" required>
                     {{#each animes}}
                     <option value="{{this.anime_id}}">{{this.title}}</option>

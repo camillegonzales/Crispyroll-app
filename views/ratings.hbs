@@ -56,11 +56,11 @@
         <form id="add-rating-form" method="POST" action="/add-rating">
             <legend><strong>Add Rating</strong></legend>
             <fieldset class="fields">
-                <p>All fields required. Select a user and an anime. Select "none" under User to post anonymously.</p>
+                <p>All fields required*. Select a user and an anime. Select "none" under User to post anonymously.</p>
                 <br>
 
                 <!-- Dynamic dropdown for Users -->
-                <label> User </label>
+                <label> User* </label>
                 <select class="dropdown" name="mySelectUserName" id="mySelectUserName" required>
                     <option disabled selected>Select User</option>
                     {{#each users}}
@@ -70,7 +70,7 @@
                 </select>
 
                 <!-- Dynamic dropdown for Animes -->
-                <label> Anime </label>
+                <label> Anime* </label>
                 <select class="dropdown" name="mySelectAnimeTitle" id="mySelectAnimeTitle" required>
                     <option disabled selected>Select Anime</option>
                     {{#each animes}}
@@ -78,8 +78,8 @@
                     {{/each}}
                 </select>
 
-                <label> Rating </label> <input type="number" name="input-rating" id="input-rating" placeholder="1-5" min="1" max="5" required>
-                <label> Review </label> <input type="text" name="input-review" id="input-review" placeholder="Max 218 characters" maxlength="218" required>
+                <label> Rating* </label> <input type="number" name="input-rating" id="input-rating" placeholder="1-5" min="1" max="5" required>
+                <label> Review* </label> <input type="text" name="input-review" id="input-review" placeholder="Max 218 characters" maxlength="218" required>
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addRating" value="Add a Rating">

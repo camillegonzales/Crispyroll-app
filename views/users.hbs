@@ -55,11 +55,11 @@
         <form id="add-user-form" method="POST" action="/add-user">
             <legend><strong>Add User</strong></legend>
             <fieldset class="fields">
-                <p>All fields required. Enter a valid email.</p>
+                <p>All fields required*. Enter a valid email.</p>
                 <br>
 
-                <label> Username </label> <input type="text" name="input-user-name" id="input-user-name" placeholder="Create a username">
-                <label> Email </label> <input type="text" name="input-user-email" id="input-user-email" placeholder="Enter your email (e.g., johndoe@example.com)">
+                <label> Username* </label> <input type="text" name="input-user-name" id="input-user-name" placeholder="Create a username" required>
+                <label> Email* </label> <input type="text" name="input-user-email" id="input-user-email" placeholder="Enter your email (e.g., johndoe@example.com)" required>
 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addUser" value="Add a User">

@@ -53,13 +53,13 @@
         <form id="add-anime-form" method="POST" action="/add-anime">
             <legend><strong>Add Anime</strong></legend>
             <fieldset class="fields">
-                <p>All fields required. Select a studio name.</p>
+                <p>All fields required*. Select a studio name.</p>
                 <br>
 
-                <label> Anime Title </label> <input type="text" name="input-anime-title" id="input-anime-title" placeholder="Title of anime" required>
+                <label> Anime Title* </label> <input type="text" name="input-anime-title" id="input-anime-title" placeholder="Title of anime" required>
 
                 <!-- Dynamic dropdown for Studios -->
-                <label> Studio Name </label>
+                <label> Studio Name* </label>
                 <select class="dropdown" name="mySelectStudio" id="mySelectStudio" required>
                     <option disabled selected> Select a Studio </option>
                     {{#each studios}}
@@ -69,7 +69,7 @@
                     {{/each}}
                 </select>
 
-                <label> Number of Episodes </label> <input type="number" name="input-num-episode" id="input-num-episode" placeholder="# of episodes in anime" required>
+                <label> Number of Episodes* </label> <input type="number" name="input-num-episode" id="input-num-episode" placeholder="# of episodes in anime" required>
                 
                 <div class="btn-container">
                     <input class="btn" type="submit" id="addAnime" value="Add an Anime">
