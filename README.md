@@ -6,12 +6,7 @@ Group 50: Camille Kyna Gonzales, Jennifer Trainor <br />
 ## Citations:
 - All code is based on the CS 340 starter code, with the exception of the UPDATE steps for all entities as our own work. <br />
 Date: 11/14/2023 <br />
-Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-- Javascript codes within the Handlebars files, which function to set the 'selected' attribute on the option element that matches the ID to be updated in our dynamic
-dropdowns, are based on the code snippet and comment found on ED discussion. <br />
-Date: 12/08/2023 <br />
-Author: Dawn Toh <br />
-Source URL: https://edstem.org/us/courses/44903/discussion/3987592?answer=9209049 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app <br />
 
 ## Entities:
 All CRUD steps are fully functioning on all entities.
