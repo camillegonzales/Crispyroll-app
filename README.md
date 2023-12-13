@@ -3,6 +3,8 @@
 Project Title: Crispyroll <br />
 Group 50: Camille Kyna Gonzales, Jennifer Trainor <br />
 
+Link: https://crispyroll-dccbbd0aae2c.herokuapp.com/index
+
 ## Citations:
 - All code is based on the CS 340 starter code, with the exception of the UPDATE steps for all entities as our own work. <br />
 Date: 11/14/2023 <br />
