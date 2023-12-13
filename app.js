@@ -20,7 +20,7 @@ app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');                   
 var db      = require('./database/db-connector');    
 const { title } = require('process');
-PORT        = 4400;                          
+PORT        = process.env.PORT || 4400;                          
 
 
 // Routes
