@@ -4,7 +4,7 @@ var mysql = require('mysql')
 // Create a 'connection pool' using the provided credentials
 var pool = mysql.createPool({
     connectionLimit : 10,
-    host            : JAWSDB_MARIA_URL,
+    host            : JAWSDB_MARIA_HOST,
     user            : JAWSDB_MARIA_USER,
     password        : JAWSDB_MARIA_PASS,
     database        : JAWSDB_MARIA_DB
