@@ -521,12 +521,7 @@ app.post('/put-studio', function(req,res,next) {
     })
 });
 
-
-// // Listener
-// app.listen(PORT, function() {          
-//     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
-// });
-
-app.listen(process.env.PORT || 4400, function(){
+// Listener
+app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
