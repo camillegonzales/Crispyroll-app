@@ -20,7 +20,7 @@ app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');                   
 var db      = require('./database/db-connector');    
 const { title } = require('process');
-PORT        = 4400;                          
+PORT        = process.env.PORT || 3306;                          
 
 
 // Routes
@@ -521,8 +521,7 @@ app.post('/put-studio', function(req,res,next) {
     })
 });
 
-
 // Listener
-app.listen(PORT, function() {          
-    console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
-});
+app.listen(process.env.PORT || 3306, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
